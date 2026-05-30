@@ -235,7 +235,7 @@ body.reveal-body {
   transition: 
     opacity var(--transition-slow), 
     transform var(--transition-slow);
-  transition-delay: 1.8s;
+  transition-delay: 4.0s;
 }
 
 .sun-rising .reveal-controls {
