@@ -1561,3 +1561,15 @@ section {
   }
 }
 
+.sandbox-instruction {
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: var(--color-text-muted);
+  margin-top: 0.8rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
