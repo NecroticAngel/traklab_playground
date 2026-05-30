@@ -26,7 +26,7 @@
 }
 
 body.reveal-body {
-  background-color: var(--color-brand-slate); /* Starts solid brand purple-slate */
+  background-color: var(--color-bg-light); /* Under the mask, the page background is white */
   color: var(--color-brand-slate);
   font-family: var(--font-body);
   height: 100vh;
@@ -44,8 +44,7 @@ body.reveal-body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-brand-slate); /* Starts solid brand purple-slate */
-  transition: background-color var(--transition-ultra-slow);
+  background-color: var(--color-bg-light); /* Clean white ending state */
 }
 
 /* --------------------------------------------------------------------------
@@ -62,7 +61,6 @@ body.reveal-body {
   height: min(25vw, 130px);
   z-index: 3; /* Positioned behind the logo wrapper (z-index 4) but above background */
   pointer-events: none;
-  transition: transform var(--transition-ultra-slow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +73,6 @@ body.reveal-body {
   z-index: 2;
   position: relative;
   filter: drop-shadow(0 4px 20px rgba(255, 177, 59, 0.45));
-  transition: transform var(--transition-slow);
 }
 
 /* Beautiful breathing solar halo around the rising sun */
@@ -112,10 +109,24 @@ body.reveal-body {
   justify-content: center;
   opacity: 0;
   transform: scale(0.93);
-  transition: 
-    opacity var(--transition-slow), 
-    transform var(--transition-slow);
-  transition-delay: 0.9s;
+}
+
+/* --------------------------------------------------------------------------
+   BRAND SLATE GRADIENT MASK (SLIDES UPWARD ON SUNRISE)
+   -------------------------------------------------------------------------- */
+.brand-slate-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 5; /* Positioned on top of logo wrapper (z-index 4) and sun (z-index 3) to mask them initially */
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(31, 29, 52, 1.0) 0%,
+    rgba(31, 29, 52, 0.98) 35%,
+    rgba(31, 29, 52, 0.75) 68%,
+    rgba(31, 29, 52, 0.0) 100%
+  );
+  transform: translateY(0%);
 }
 
 .logo-backlight {
@@ -208,20 +219,30 @@ body.reveal-body {
 /* --------------------------------------------------------------------------
    SUNRISE ACTIVE TRANSFORMATION CLASSES (Triggered by JS)
    -------------------------------------------------------------------------- */
-.sun-rising .reveal-main {
-  background-color: var(--color-bg-light); /* Fades the background from slate to pure white */
+.sun-rising .brand-slate-mask {
+  transform: translateY(-100%);
+  transition: transform var(--transition-ultra-slow);
 }
 
 .sun-rising .reveal-sun {
   transform: translate(-50%, -56vh); /* Tracksol icon sun rises beautifully above the logo wrapper */
+  transition: transform var(--transition-ultra-slow);
 }
 
 .sun-rising .reveal-logo-wrapper {
   opacity: 1;
   transform: scale(1);
+  transition: 
+    opacity var(--transition-slow), 
+    transform var(--transition-slow);
+  transition-delay: 0.9s;
 }
 
 .sun-rising .reveal-controls {
   opacity: 1;
   transform: translate(-50%, 0);
+  transition: 
+    opacity var(--transition-slow), 
+    transform var(--transition-slow);
+  transition-delay: 5.4s;
 }
