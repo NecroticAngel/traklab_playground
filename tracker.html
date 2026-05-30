@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tracklab Solar Simulator - Interactive sun tracking laboratory. Control the sun's trajectory and test single-axis solar tracking algorithms.">
+  <title>Tracklab Solar | Interactive Tracking Simulator</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body class="playground-body">
+
+  <!-- Background Ambience & Stars -->
+  <div class="stars-overlay" id="starsOverlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="main-header">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">☼</span>
+      <span class="logo-text">tracklab</span>
+      <span class="logo-badge">Simulator Lab</span>
+    </a>
+    <nav class="desktop-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="tracker.html" class="nav-link">Simulation Lab</a>
+      <a href="panel.html" class="nav-link">Mouse Sandbox</a>
+      <a href="#playground" class="nav-cta" id="autoPlayToggleBtn">Auto-Cycle: Off</a>
+    </nav>
+  </header>
+
+  <!-- MAIN PLAYGROUND HERO VIEW -->
+  <main>
+    <section class="hero-section playground-hero" id="hero">
+      <!-- Sky Layers Driven Dynamically by CSS Variables from JS -->
+      <div class="playground-sky-night" id="skyNight"></div>
+      <div class="playground-sky-dawn" id="skyDawn"></div>
+      <div class="playground-sky-day" id="skyDay"></div>
+      
+      <!-- Interactive Rising Sun Element -->
+      <div class="sun-element" id="sun">
+        <div class="sun-core"></div>
+        <div class="sun-flare"></div>
+      </div>
+
+      <!-- Single Axis Tracker Silhouette SVG -->
+      <div class="horizon-silhouette">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Back layer of mountains/hills -->
+          <path d="M0,240 L180,210 L360,250 L540,190 L720,240 L900,200 L1080,230 L1260,185 L1440,220 L1440,320 L0,320 Z" fill="rgba(10, 15, 30, 0.4)"></path>
+          
+          <!-- Middle layer of modern rooftops with solar panels -->
+          <path d="M0,270 L200,250 L200,270 L350,270 L420,240 L550,240 L580,260 L700,260 L780,220 L950,220 L1000,250 L1150,250 L1250,210 L1440,255 L1440,320 L0,320 Z" fill="rgba(8, 12, 24, 0.75)"></path>
+          
+          <!-- Front Layer: Ground plane silhouette -->
+          <path d="M0,320 L1440,300 L1440,320 L0,320 Z" fill="#04060c"></path>
+
+          <!-- Tracker 1 -->
+          <rect x="198" y="235" width="4" height="65" fill="#070a12" />
+          <g class="tracker-span" id="span1" style="transform-origin: 200px 235px;">
+            <line x1="140" y1="235" x2="260" y2="235" stroke="#0f1626" stroke-width="6" stroke-linecap="round" />
+            <rect x="145" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="171" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="197" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="223" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <circle cx="200" cy="235" r="4.5" fill="#1b2a3a" stroke="#ffb13b" stroke-width="1"/>
+          </g>
+
+          <!-- Tracker 2 -->
+          <rect x="498" y="225" width="4" height="75" fill="#070a12" />
+          <g class="tracker-span" id="span2" style="transform-origin: 500px 225px;">
+            <line x1="430" y1="225" x2="570" y2="225" stroke="#0f1626" stroke-width="7" stroke-linecap="round" />
+            <rect x="435" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="466" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="497" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="528" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <circle cx="500" cy="225" r="5" fill="#1b2a3a" stroke="#ffb13b" stroke-width="1.25"/>
+          </g>
+
+          <!-- Tracker 3 -->
+          <rect x="798" y="215" width="4.5" height="85" fill="#070a12" />
+          <g class="tracker-span" id="span3" style="transform-origin: 800px 215px;">
+            <line x1="720" y1="215" x2="880" y2="215" stroke="#0f1626" stroke-width="8" stroke-linecap="round" />
+            <rect x="726" y="206" width="30" height="8" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="761" y="206" width="30" height="8" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="796" y="206" width="30" height="8" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="831" y="206" width="30" height="8" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <circle cx="800" cy="215" r="5.5" fill="#1b2a3a" stroke="#ffb13b" stroke-width="1.5"/>
+          </g>
+
+          <!-- Tracker 4 -->
+          <rect x="1098" y="225" width="4" height="75" fill="#070a12" />
+          <g class="tracker-span" id="span4" style="transform-origin: 1100px 225px;">
+            <line x1="1030" y1="225" x2="1170" y2="225" stroke="#0f1626" stroke-width="7" stroke-linecap="round" />
+            <rect x="1035" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1066" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1097" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1128" y="217" width="26" height="7" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <circle cx="1100" cy="225" r="5" fill="#1b2a3a" stroke="#ffb13b" stroke-width="1.25"/>
+          </g>
+
+          <!-- Tracker 5 -->
+          <rect x="1298" y="235" width="4" height="65" fill="#070a12" />
+          <g class="tracker-span" id="span5" style="transform-origin: 1300px 235px;">
+            <line x1="1240" y1="235" x2="1360" y2="235" stroke="#0f1626" stroke-width="6" stroke-linecap="round" />
+            <rect x="1245" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1271" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1297" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <rect x="1323" y="228" width="22" height="6" fill="#0a1829" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.75" />
+            <circle cx="1300" cy="235" r="4.5" fill="#1b2a3a" stroke="#ffb13b" stroke-width="1"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- GLASSMORPHIC INTERACTIVE LAB HUD DOCK -->
+      <div class="playground-hud" id="playgroundHud">
+        <div class="hud-header">
+          <div class="hud-title-block">
+            <span class="hud-badge-live">LIVE TELEMETRY</span>
+            <h3 class="hud-main-title">Tracklab Sun Simulator</h3>
+          </div>
+          <button class="hud-play-btn" id="playPauseBtn">
+            <span class="play-icon">▶</span> <span class="play-text">Auto Loop</span>
+          </button>
+        </div>
+
+        <hr class="hud-divider">
+
+        <!-- Manual Sliders -->
+        <div class="hud-controls-grid">
+          <div class="hud-input-group">
+            <div class="hud-slider-header">
+              <label for="timeSlider">Time of Day (Sun Position)</label>
+              <span class="hud-slider-val" id="timeSliderVal">9:00 AM</span>
+            </div>
+            <input type="range" id="timeSlider" min="360" max="1080" step="1" value="540" class="custom-slider hud-slider">
+          </div>
+        </div>
+
+        <!-- Metric Telemetry Displays -->
+        <div class="hud-metrics-grid">
+          <!-- Metric 1 -->
+          <div class="hud-metric-card">
+            <span class="hud-metric-label">Sun Elevation</span>
+            <span class="hud-metric-value" id="hudSunElevation">42.5°</span>
+          </div>
+          <!-- Metric 2 -->
+          <div class="hud-metric-card">
+            <span class="hud-metric-label">Tracker Alignment</span>
+            <span class="hud-metric-value accent-text" id="hudTrackerAngle">-47.5°</span>
+          </div>
+          <!-- Metric 3 -->
+          <div class="hud-metric-card">
+            <span class="hud-metric-label">Active Tracker Yield</span>
+            <span class="hud-metric-value" id="hudActiveEfficiency">100.0%</span>
+          </div>
+          <!-- Metric 4 -->
+          <div class="hud-metric-card">
+            <span class="hud-metric-label">Fixed-Tilt Yield</span>
+            <span class="hud-metric-value" id="hudFixedEfficiency">68.2%</span>
+          </div>
+        </div>
+
+        <!-- Comparative Yield Premium Gauge -->
+        <div class="hud-comparison-bar">
+          <div class="hud-comparison-header">
+            <span>Tracker Energy Yield Gain</span>
+            <span class="hud-premium-badge" id="hudPremiumGain">+31.8% Yield Premium</span>
+          </div>
+          <div class="hud-comparison-track">
+            <div class="hud-comparison-fill" id="hudComparisonFill" style="width: 31.8%;"></div>
+          </div>
+        </div>
+
+        <div class="hud-footer">
+          *Formulas model astronomical alignment vector cosine gains vs. stagnant 30° South-facing fixed panels.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="tracker.js?v=2"></script>
+</body>
+</html>

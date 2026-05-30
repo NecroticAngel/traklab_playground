@@ -1,0 +1,13 @@
+{
+  "name": "solar-made-simple",
+  "version": "1.0.0",
+  "description": "Interactive sunrise landing page for solar made simple.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server ./ -p 5173 -o",
+    "start": "http-server ./"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
