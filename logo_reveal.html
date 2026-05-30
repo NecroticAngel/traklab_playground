@@ -16,20 +16,19 @@
 
   <main class="reveal-main" id="revealMain">
     
-    <!-- Cinematic Sky Layers (Under the blue overlay) -->
-    <div class="reveal-sky-dawn" id="skyDawn"></div>
-    
-    <!-- The Rising Ambient Sunrise Glow (Rises behind the logo) -->
-    <div class="reveal-sun" id="sun"></div>
+    <!-- The Rising Tracksol Icon Sun (Rises behind/above the logo) -->
+    <div class="reveal-sun" id="sun">
+      <img src="AA_jodev/tracksol%20icon.png" alt="Tracksol Solar Icon" class="sun-icon-img">
+    </div>
 
     <!-- Centered Brand Logo -->
     <div class="reveal-logo-wrapper" id="logoWrapper">
-      <div class="logo-backlight"></div>
+      <!-- <div class="logo-backlight"></div> -->
       <img src="AA_jodev/Logo Blue.webp" alt="Tracklab Solar Logo" class="reveal-logo" id="revealLogo">
     </div>
 
-    <!-- Solid Brand Blue Viewport Overlay (Starts at 100% opacity on load, fades out as sun rises) -->
-    <div class="brand-blue-overlay" id="blueOverlay"></div>
+    <!-- Solid Brand Slate Overlay (#1f1d34) (Starts at 100% opacity on load, fades to transparent) -->
+    <div class="brand-slate-overlay" id="slateOverlay"></div>
 
     <!-- Spaced Entry Controls (Positioned at bottom center, fades in once sunrise completes) -->
     <div class="reveal-controls" id="revealControls">

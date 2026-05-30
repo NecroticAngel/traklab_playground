@@ -1,14 +1,11 @@
 /* ==========================================================================
-   TRACKLAB BRAND LOGO REVEAL STYLES
+   TRACKLAB BRAND LOGO REVEAL STYLES (MINIMALIST SLATE-TO-WHITE THEME)
    ========================================================================== */
 
 :root {
-  /* Color Palette matching Logo Blue brand colors */
-  --color-brand-blue: #06122d;
-  --color-bg-dark: #03050a;
-  
-  --color-sun-core: #fff5e6;
-  --color-sun-glow: #ff9f1c;
+  /* Color Palette */
+  --color-brand-slate: #1f1d34; /* The beautiful brand purple-slate */
+  --color-bg-light: #ffffff;      /* Morning clear white */
   --color-accent-gold: #ffb13b;
   
   /* Fonts */
@@ -29,8 +26,8 @@
 }
 
 body.reveal-body {
-  background-color: var(--color-bg-dark);
-  color: #ffffff;
+  background-color: var(--color-bg-light);
+  color: var(--color-brand-slate);
   font-family: var(--font-body);
   height: 100vh;
   width: 100%;
@@ -47,82 +44,46 @@ body.reveal-body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-bg-dark);
-}
-
-/* Background Stars */
-.stars-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  background-image: 
-    radial-gradient(1px 1px at 40px 60px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 250px 140px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 500px 380px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2.5px 2.5px at 680px 220px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 900px 480px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 1100px 310px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 1300px 420px, #ffffff, rgba(0,0,0,0));
-  background-size: 600px 600px;
-  opacity: 0.15;
-  transition: opacity var(--transition-slow);
+  background-color: var(--color-bg-light); /* Clean white ending state */
 }
 
 /* --------------------------------------------------------------------------
-   SKY GRADIENTS & RISING SUN
+   RISING TRACKSOL ICON SUN
    -------------------------------------------------------------------------- */
 
-/* Cinematic morning dawn layer revealed under the brand-blue overlay */
-.reveal-sky-dawn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  background: 
-    linear-gradient(to bottom, 
-      #050c18 0%, 
-      #0e192f 40%, 
-      #351b3a 70%, 
-      #8c3851 88%, 
-      var(--color-accent-gold) 100%);
-  opacity: 0;
-  transition: opacity var(--transition-ultra-slow);
-}
-
-/* Rising ambient sunrise glow behind the logo (no defined round ball/core) */
+/* The rising tracksol logo sun, positioned behind the logo wrapper */
 .reveal-sun {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 65%); /* Starts fully stowed/hidden below */
-  width: min(90vw, 850px); /* Massive, soft, diffuse width */
-  height: min(90vw, 850px);
+  transform: translate(-50%, 120%); /* Starts fully stowed below screen */
+  width: min(25vw, 130px);
+  height: min(25vw, 130px);
   z-index: 2;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 177, 59, 0.38) 0%, rgba(255, 159, 28, 0.18) 30%, rgba(140, 56, 81, 0.05) 60%, transparent 80%);
-  filter: blur(35px); /* Massive blur to ensure absolutely no sharp edges */
   transition: transform var(--transition-ultra-slow);
 }
 
+.sun-icon-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 15px rgba(255, 177, 59, 0.35)) drop-shadow(0 0 5px rgba(255, 177, 59, 0.15));
+  transition: transform var(--transition-slow);
+}
+
 /* --------------------------------------------------------------------------
-   BRAND BLUE OVERLAY & LOGO REVEAL
+   BRAND SLATE OVERLAY & LOGO REVEAL
    -------------------------------------------------------------------------- */
 
-/* Solid brand blue background cover. Viewport starts here, then fades to transparent */
-.brand-blue-overlay {
+/* Solid brand slate background overlay. Viewport starts here, then fades to white */
+.brand-slate-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-brand-blue);
+  background-color: var(--color-brand-slate);
   z-index: 5;
   pointer-events: none;
   opacity: 1;
@@ -150,16 +111,16 @@ body.reveal-body {
   width: min(70vw, 420px);
   height: min(70vw, 420px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(255, 177, 59, 0.04) 50%, transparent 70%);
-  filter: blur(15px);
+  background: radial-gradient(circle, rgba(255, 177, 59, 0.08) 0%, transparent 75%);
+  filter: blur(20px);
   pointer-events: none;
 }
 
 .reveal-logo {
-  width: min(85vw, 360px);
+  width: min(85vw, 350px);
   height: auto;
   display: block;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 6px 20px rgba(31, 29, 52, 0.15));
 }
 
 /* --------------------------------------------------------------------------
@@ -182,14 +143,12 @@ body.reveal-body {
   transition-delay: 1.8s;
 }
 
-/* Glassmorphic site entry CTA button */
+/* High-contrast slate border/text cta button for white background */
 .enter-site-cta {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  color: #ffffff;
-  padding: 1rem 3.5rem;
+  background: transparent;
+  border: 2px solid var(--color-brand-slate);
+  color: var(--color-brand-slate);
+  padding: 0.95rem 3.5rem;
   border-radius: 50px;
   font-family: var(--font-heading);
   font-weight: 700;
@@ -197,19 +156,18 @@ body.reveal-body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 
-    0 10px 35px rgba(0, 0, 0, 0.35), 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(31, 29, 52, 0.05);
   transition: var(--transition-fast);
 }
 
 .enter-site-cta:hover {
-  background: linear-gradient(135deg, rgba(255, 177, 59, 0.28) 0%, rgba(255, 177, 59, 0.15) 100%);
-  border-color: rgba(255, 177, 59, 0.6);
+  background-color: var(--color-brand-slate);
+  color: #ffffff;
   transform: translateY(-3px);
   box-shadow: 
-    0 15px 40px rgba(255, 177, 59, 0.3),
-    0 0 15px rgba(255, 177, 59, 0.1);
+    0 12px 30px rgba(31, 29, 52, 0.2),
+    0 0 15px rgba(255, 177, 59, 0.25);
+  border-color: var(--color-brand-slate);
 }
 
 .enter-site-cta:active {
@@ -219,7 +177,7 @@ body.reveal-body {
 .replay-intro-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(31, 29, 52, 0.45);
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
@@ -232,22 +190,18 @@ body.reveal-body {
 
 .replay-intro-btn:hover {
   color: var(--color-accent-gold);
-  text-shadow: 0 0 8px rgba(255, 177, 59, 0.3);
+  text-shadow: 0 0 8px rgba(255, 177, 59, 0.2);
 }
 
 /* --------------------------------------------------------------------------
    SUNRISE ACTIVE TRANSFORMATION CLASSES (Triggered by JS)
    -------------------------------------------------------------------------- */
-.sun-rising .brand-blue-overlay {
-  opacity: 0; /* solid blue fades completely to transparent */
-}
-
-.sun-rising .reveal-sky-dawn {
-  opacity: 1; /* revealing warm morning sunrise */
+.sun-rising .brand-slate-overlay {
+  opacity: 0; /* solid brand slate fades completely to transparent */
 }
 
 .sun-rising .reveal-sun {
-  transform: translate(-50%, -10%); /* Sun rises directly behind the center logo */
+  transform: translate(-50%, -56vh); /* Tracksol icon sun rises beautifully above the logo wrapper */
 }
 
 .sun-rising .reveal-logo-wrapper {
