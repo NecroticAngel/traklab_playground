@@ -96,40 +96,19 @@ body.reveal-body {
   transition: opacity var(--transition-ultra-slow);
 }
 
-/* Rising sun element behind the logo */
+/* Rising ambient sunrise glow behind the logo (no defined round ball/core) */
 .reveal-sun {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 65%); /* Starts fully stowed/hidden below */
-  width: min(55vw, 550px);
-  height: min(55vw, 550px);
+  width: min(90vw, 850px); /* Massive, soft, diffuse width */
+  height: min(90vw, 850px);
   z-index: 2;
   pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 177, 59, 0.38) 0%, rgba(255, 159, 28, 0.18) 30%, rgba(140, 56, 81, 0.05) 60%, transparent 80%);
+  filter: blur(35px); /* Massive blur to ensure absolutely no sharp edges */
   transition: transform var(--transition-ultra-slow);
-}
-
-.sun-core {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 10%, var(--color-sun-core) 30%, var(--color-sun-glow) 65%, rgba(255, 177, 59, 0.05) 100%);
-  filter: blur(3px);
-  box-shadow: 
-    0 0 100px rgba(255, 159, 28, 0.5),
-    0 0 250px rgba(255, 159, 28, 0.3),
-    0 0 450px rgba(255, 177, 59, 0.15);
-}
-
-.sun-glow {
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  width: 140%;
-  height: 140%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 177, 59, 0.2) 0%, transparent 70%);
-  filter: blur(15px);
 }
 
 /* --------------------------------------------------------------------------
