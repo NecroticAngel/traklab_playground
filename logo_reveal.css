@@ -57,10 +57,21 @@ body.reveal-body {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 120%); /* Starts fully stowed below screen */
-  width: min(25vw, 130px);
-  height: min(25vw, 130px);
   z-index: 3; /* Positioned behind the logo wrapper (z-index 4) but above background */
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.sun-glow-wrapper {
+  position: relative;
+  width: min(25vw, 120px);
+  height: min(25vw, 120px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,6 +110,13 @@ body.reveal-body {
   }
 }
 
+.reveal-logo-sun {
+  width: min(80vw, 280px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 15px rgba(31, 29, 52, 0.08));
+}
+
 /* Logo container with custom soft back-glow */
 .reveal-logo-wrapper {
   position: relative;
@@ -109,6 +127,19 @@ body.reveal-body {
   justify-content: center;
   opacity: 0;
   transform: scale(0.93);
+  padding: 0 1.5rem;
+}
+
+/* Premium styled slogan typography */
+.reveal-slogan {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3.8vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-brand-slate);
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* --------------------------------------------------------------------------
