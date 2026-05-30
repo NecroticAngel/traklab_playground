@@ -1134,10 +1134,6 @@ section {
 /* ==========================================================================
    INTERACTIVE SIMULATOR HUD & PLAYGROUND STYLES
    ========================================================================== */
-.playground-body {
-  overflow: hidden;
-  height: 100vh;
-}
 
 .playground-hero {
   height: 100vh;
