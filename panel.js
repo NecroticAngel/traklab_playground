@@ -20,19 +20,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const getSVGCoordinates = (clientX, clientY) => {
     pt.x = clientX;
     pt.y = clientY;
-    // Performs inverse matrix calculation mapping screen coords to local viewbox coordinates
     return pt.matrixTransform(svg.getScreenCTM().inverse());
   };
 
-  // Tracking limits
+  // Tracking limits & State Variables
   const LIMIT_DEG = 75;
+  let isTracking = true; // Double click toggles this to lock the sun in the sky!
+  
+  // Last recorded coordinates to lock in place
+  let lastSvgX = 720;
+  let lastSvgY = 100;
+  let lastClientX = 720;
+  let lastClientY = 100;
 
   const handleMouseMove = (e) => {
+    // If tracking is locked, do not update coordinate parameters
+    if (!isTracking) return;
+
     const coords = getSVGCoordinates(e.clientX, e.clientY);
     const svgX = coords.x;
     const svgY = coords.y;
 
-    // Center pivot coordinates of the tracker axle inside index.html SVG (720, 320)
+    // Cache current positions for locking
+    lastSvgX = svgX;
+    lastSvgY = svgY;
+    lastClientX = e.clientX;
+    lastClientY = e.clientY;
+
     const axleX = 720;
     const axleY = 320;
 
@@ -48,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const deltaY = svgY - axleY; // negative when mouse is above tracker axis
 
     // Calculate solar angle in radians relative to vertical (straight up = 0 rad, right = positive, left = negative)
-    // Using Math.atan2(deltaX, -deltaY) perfectly aligns 0 degrees with vertical zenith
     const solarAngleRad = Math.atan2(deltaX, -deltaY);
     const targetAngleDeg = solarAngleRad * (180 / Math.PI);
 
@@ -58,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ground plane horizon check: If mouse cursor goes below the ground line (axleY), force stow mode
     const isBelowHorizon = deltaY > 0;
     if (isBelowHorizon) {
-      // In stow mode (night/sunset), the panels return to a safe flat 0 degree horizontal stow layout
       trackerAngle = 0;
     }
 
@@ -68,21 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Calculate efficiencies
     let trackerEfficiency = 100.0;
-    let isStowedOrClamped = false;
 
     if (isBelowHorizon) {
-      trackerEfficiency = 0.0; // Stowed at night, no energy generation
-      isStowedOrClamped = true;
+      trackerEfficiency = 0.0;
     } else if (Math.abs(targetAngleDeg) > LIMIT_DEG) {
-      // Cosine loss applies when sun angle exceeds mechanical limits (tracker locked at limit)
       const misalignmentDeg = Math.abs(targetAngleDeg) - LIMIT_DEG;
       const misalignmentRad = misalignmentDeg * (Math.PI / 180);
       trackerEfficiency = Math.max(0, Math.cos(misalignmentRad)) * 100;
-      isStowedOrClamped = true;
     }
 
-    // Fixed-tilt efficiency: sits stagnated at South-facing 30 degrees (aligned at target 0)
-    // Loss = 100 - cos(targetAngle) * 100
+    // Fixed-tilt efficiency
     const fixedAngleDiffRad = Math.abs(targetAngleDeg) * (Math.PI / 180);
     const fixedEfficiency = isBelowHorizon ? 0.0 : Math.max(0, Math.cos(fixedAngleDiffRad)) * 100;
     const fixedLoss = 100 - fixedEfficiency;
@@ -128,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleMouseLeave = () => {
-    // Fade out beam overlays when user cursor exits viewport boundaries
+    // If position is locked, do not hide sun elements on screen exit
+    if (!isTracking) return;
+
     sunBeam.setAttribute('opacity', '0');
     if (customCursor) {
       customCursor.style.opacity = '0';
@@ -137,6 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add mouse listeners to viewport window
   window.addEventListener('mousemove', (e) => {
+    if (!isTracking) return; // Keep cursor locked at last coordinates
+
     handleMouseMove(e);
     if (customCursor) {
       customCursor.style.left = `${e.clientX}px`;
@@ -146,6 +157,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('mouseleave', handleMouseLeave);
+
+  // Double Click Handler: Lock / Release Sun position
+  window.addEventListener('dblclick', (e) => {
+    // Clear double-click browser text highlights
+    window.getSelection().removeAllRanges();
+
+    isTracking = !isTracking;
+    
+    if (isTracking) {
+      // Pick up the Sun! Hide default pointer
+      document.body.classList.remove('manual-pointer-mode');
+      
+      if (customCursor) {
+        customCursor.style.left = `${e.clientX}px`;
+        customCursor.style.top = `${e.clientY}px`;
+        customCursor.style.opacity = '1';
+      }
+      handleMouseMove(e);
+    } else {
+      // Let go of the Sun! Show default pointer, keep Sun locked at last coordinate
+      document.body.classList.add('manual-pointer-mode');
+      hudStatusBadge.textContent = 'SUN POSITION LOCKED';
+      hudStatusBadge.style.color = 'var(--color-accent-teal)';
+      hudStatusBadge.style.borderColor = 'rgba(78, 168, 222, 0.3)';
+      hudStatusBadge.style.background = 'rgba(78, 168, 222, 0.08)';
+    }
+  });
 
   // Hover animations on clickable elements (makes custom sun cursor glow cyan and scale)
   const interactives = document.querySelectorAll('a, button, input, [role="button"], .custom-slider');

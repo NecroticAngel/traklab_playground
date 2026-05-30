@@ -1530,3 +1530,34 @@ section {
   cursor: none !important;
 }
 
+/* Manual Pointer Mode (when sun position is locked on double click) */
+.sandbox-body.manual-pointer-mode,
+.sandbox-body.manual-pointer-mode * {
+  cursor: default !important; /* Restore normal cursor */
+}
+
+/* Maintain native pointer hover icons for interactive elements */
+.sandbox-body.manual-pointer-mode a,
+.sandbox-body.manual-pointer-mode button,
+.sandbox-body.manual-pointer-mode .nav-link,
+.sandbox-body.manual-pointer-mode .nav-cta,
+.sandbox-body.manual-pointer-mode .custom-slider {
+  cursor: pointer !important;
+}
+
+/* Locked sun pulses softly in the sky */
+.manual-pointer-mode .custom-sun-cursor {
+  animation: cursorPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes cursorPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 177, 59, 0.95));
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(255, 177, 59, 1)) drop-shadow(0 0 30px rgba(255, 177, 59, 0.4));
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
