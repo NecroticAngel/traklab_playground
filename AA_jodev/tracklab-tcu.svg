@@ -1,0 +1,391 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <!-- Body gradient for depth -->
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a3d45"/>
+      <stop offset="60%" stop-color="#2a2c33"/>
+      <stop offset="100%" stop-color="#1e2025"/>
+    </linearGradient>
+
+    <!-- Top face gradient (lighter, catches light) -->
+    <linearGradient id="topFaceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a4e58"/>
+      <stop offset="100%" stop-color="#3a3d45"/>
+    </linearGradient>
+
+    <!-- Side face gradient (shadow) -->
+    <linearGradient id="sideFaceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#232630"/>
+      <stop offset="100%" stop-color="#1a1c22"/>
+    </linearGradient>
+
+    <!-- Front panel gradient -->
+    <linearGradient id="frontPanelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#32353e"/>
+      <stop offset="100%" stop-color="#252830"/>
+    </linearGradient>
+
+    <!-- LED green glow -->
+    <radialGradient id="ledGreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#80ff80"/>
+      <stop offset="60%" stop-color="#22cc44"/>
+      <stop offset="100%" stop-color="#115522"/>
+    </radialGradient>
+
+    <!-- LED amber glow -->
+    <radialGradient id="ledAmber" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffee88"/>
+      <stop offset="60%" stop-color="#f0a500"/>
+      <stop offset="100%" stop-color="#7a5200"/>
+    </radialGradient>
+
+    <!-- LED off -->
+    <radialGradient id="ledOff" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3a3d45"/>
+      <stop offset="100%" stop-color="#1e2025"/>
+    </radialGradient>
+
+    <!-- Mount bracket gradient -->
+    <linearGradient id="mountGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#55595f"/>
+      <stop offset="100%" stop-color="#2c2e35"/>
+    </linearGradient>
+
+    <!-- Actuator hub gradient -->
+    <radialGradient id="hubGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#555860"/>
+      <stop offset="70%" stop-color="#2a2c33"/>
+      <stop offset="100%" stop-color="#18191e"/>
+    </radialGradient>
+
+    <!-- Cable conduit -->
+    <linearGradient id="cableGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#555860"/>
+      <stop offset="50%" stop-color="#3a3d45"/>
+      <stop offset="100%" stop-color="#2a2c33"/>
+    </linearGradient>
+
+    <!-- Glow filter for LEDs -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle edge highlight -->
+    <filter id="edgeLight">
+      <feComposite in="SourceGraphic"/>
+    </filter>
+
+    <!-- Panel inset shadow -->
+    <filter id="insetShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feOffset dx="1" dy="1"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in2="SourceGraphic" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: rail — the solar panel support rail above the unit    -->
+  <!-- ============================================================ -->
+  <g id="rail">
+    <!-- Main horizontal rail bar -->
+    <rect x="60" y="60" width="680" height="32" rx="4" fill="url(#topFaceGrad)" stroke="#555" stroke-width="1"/>
+    <!-- Rail front face -->
+    <rect x="60" y="92" width="680" height="10" rx="2" fill="#4a4e58"/>
+    <!-- Rail bolt holes -->
+    <circle cx="130" cy="76" r="5" fill="#1e2025" stroke="#666" stroke-width="1"/>
+    <circle cx="200" cy="76" r="5" fill="#1e2025" stroke="#666" stroke-width="1"/>
+    <circle cx="600" cy="76" r="5" fill="#1e2025" stroke="#666" stroke-width="1"/>
+    <circle cx="670" cy="76" r="5" fill="#1e2025" stroke="#666" stroke-width="1"/>
+    <!-- Rail channel groove -->
+    <rect x="60" y="70" width="680" height="4" rx="1" fill="#1e2025" opacity="0.5"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: mounting-brackets — two brackets connecting TCU to rail -->
+  <!-- ============================================================ -->
+  <g id="mounting-brackets">
+    <!-- Left bracket -->
+    <g id="bracket-left">
+      <rect x="145" y="90" width="14" height="55" rx="2" fill="url(#mountGrad)" stroke="#444" stroke-width="0.5"/>
+      <!-- Bracket foot plate -->
+      <rect x="135" y="140" width="34" height="8" rx="2" fill="#4a4e58" stroke="#555" stroke-width="0.5"/>
+      <!-- Bolt -->
+      <circle cx="152" cy="105" r="4" fill="#1a1c22" stroke="#666" stroke-width="1"/>
+      <circle cx="152" cy="105" r="2" fill="#333"/>
+    </g>
+    <!-- Right bracket -->
+    <g id="bracket-right">
+      <rect x="641" y="90" width="14" height="55" rx="2" fill="url(#mountGrad)" stroke="#444" stroke-width="0.5"/>
+      <!-- Bracket foot plate -->
+      <rect x="631" y="140" width="34" height="8" rx="2" fill="#4a4e58" stroke="#555" stroke-width="0.5"/>
+      <!-- Bolt -->
+      <circle cx="648" cy="105" r="4" fill="#1a1c22" stroke="#666" stroke-width="1"/>
+      <circle cx="648" cy="105" r="2" fill="#333"/>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: enclosure — the main TCU box body (isometric-ish)    -->
+  <!-- ============================================================ -->
+  <g id="enclosure">
+    <!-- === Top face (top surface of box) === -->
+    <g id="enclosure-top">
+      <path d="M152 148 L648 148 L668 130 L172 130 Z" fill="url(#topFaceGrad)" stroke="#555" stroke-width="0.8"/>
+      <!-- Seam line -->
+      <line x1="172" y1="130" x2="648" y2="148" stroke="#3a3d45" stroke-width="0.5" opacity="0.5"/>
+    </g>
+
+    <!-- === Side face right (right side panel) === -->
+    <g id="enclosure-side-right">
+      <path d="M648 148 L668 130 L668 390 L648 408 Z" fill="url(#sideFaceGrad)" stroke="#333" stroke-width="0.8"/>
+      <!-- Vent slots on side -->
+      <line x1="652" y1="200" x2="664" y2="192" stroke="#1a1c22" stroke-width="2"/>
+      <line x1="652" y1="215" x2="664" y2="207" stroke="#1a1c22" stroke-width="2"/>
+      <line x1="652" y1="230" x2="664" y2="222" stroke="#1a1c22" stroke-width="2"/>
+      <line x1="652" y1="245" x2="664" y2="237" stroke="#1a1c22" stroke-width="2"/>
+      <line x1="652" y1="260" x2="664" y2="252" stroke="#1a1c22" stroke-width="2"/>
+      <line x1="652" y1="275" x2="664" y2="267" stroke="#1a1c22" stroke-width="2"/>
+    </g>
+
+    <!-- === Front face (main visible face) === -->
+    <g id="enclosure-front">
+      <rect x="152" y="148" width="496" height="260" rx="3" fill="url(#frontPanelGrad)" stroke="#3a3d45" stroke-width="1"/>
+      <!-- Edge highlight top -->
+      <line x1="152" y1="149" x2="648" y2="149" stroke="#4a4e58" stroke-width="1.5" opacity="0.6"/>
+      <!-- Edge highlight left -->
+      <line x1="153" y1="149" x2="153" y2="407" stroke="#3e4148" stroke-width="1.5" opacity="0.6"/>
+      <!-- Bottom shadow -->
+      <line x1="152" y1="407" x2="648" y2="407" stroke="#1a1c22" stroke-width="2"/>
+
+      <!-- Panel inset / bezel area -->
+      <rect x="162" y="158" width="476" height="240" rx="2" fill="#24262e" stroke="#1e2025" stroke-width="1"/>
+    </g>
+
+    <!-- === Bottom face === -->
+    <g id="enclosure-bottom">
+      <path d="M152 408 L648 408 L668 390 L172 390 Z" fill="#1e2025" stroke="#333" stroke-width="0.8"/>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: control-panel — front face elements                  -->
+  <!-- ============================================================ -->
+  <g id="control-panel">
+
+    <!-- === LED indicators (left cluster) === -->
+    <g id="leds">
+      <!-- Label -->
+      <text x="196" y="194" font-family="monospace" font-size="7" fill="#555" letter-spacing="0.5">STATUS</text>
+
+      <!-- LED row 1: Power (green) -->
+      <g id="led-power" filter="url(#glow)">
+        <circle cx="190" cy="215" r="6" fill="url(#ledGreen)"/>
+        <circle cx="190" cy="215" r="3" fill="#ccffcc" opacity="0.6"/>
+      </g>
+      <text x="200" y="219" font-family="monospace" font-size="8" fill="#666">PWR</text>
+
+      <!-- LED row 2: Communication (amber) -->
+      <g id="led-comms" filter="url(#glow)">
+        <circle cx="190" cy="240" r="6" fill="url(#ledAmber)"/>
+        <circle cx="190" cy="240" r="3" fill="#fff0aa" opacity="0.6"/>
+      </g>
+      <text x="200" y="244" font-family="monospace" font-size="8" fill="#666">COM</text>
+
+      <!-- LED row 3: Fault (off) -->
+      <g id="led-fault">
+        <circle cx="190" cy="265" r="6" fill="url(#ledOff)" stroke="#333" stroke-width="0.5"/>
+      </g>
+      <text x="200" y="269" font-family="monospace" font-size="8" fill="#666">FLT</text>
+
+      <!-- LED row 4: Track active (green) -->
+      <g id="led-track" filter="url(#glow)">
+        <circle cx="190" cy="290" r="6" fill="url(#ledGreen)"/>
+        <circle cx="190" cy="290" r="3" fill="#ccffcc" opacity="0.6"/>
+      </g>
+      <text x="200" y="294" font-family="monospace" font-size="8" fill="#666">TRK</text>
+    </g>
+
+    <!-- Divider line -->
+    <line x1="240" y1="170" x2="240" y2="390" stroke="#333" stroke-width="1" opacity="0.7"/>
+
+    <!-- === Manual override buttons === -->
+    <g id="buttons">
+      <text x="258" y="194" font-family="monospace" font-size="7" fill="#555" letter-spacing="0.5">MANUAL</text>
+
+      <!-- Up button -->
+      <g id="btn-up">
+        <rect x="256" y="205" width="38" height="28" rx="4" fill="#2e3038" stroke="#444" stroke-width="1"/>
+        <rect x="258" y="207" width="34" height="24" rx="3" fill="#343740"/>
+        <!-- Arrow up -->
+        <polygon points="275,213 268,225 282,225" fill="#888"/>
+      </g>
+
+      <!-- Down button -->
+      <g id="btn-down">
+        <rect x="256" y="245" width="38" height="28" rx="4" fill="#2e3038" stroke="#444" stroke-width="1"/>
+        <rect x="258" y="247" width="34" height="24" rx="3" fill="#343740"/>
+        <!-- Arrow down -->
+        <polygon points="275,265 268,253 282,253" fill="#888"/>
+      </g>
+
+      <!-- Mode/Select button -->
+      <g id="btn-mode">
+        <rect x="256" y="285" width="38" height="24" rx="4" fill="#2e3038" stroke="#444" stroke-width="1"/>
+        <rect x="258" y="287" width="34" height="20" rx="3" fill="#343740"/>
+        <text x="275" y="300" font-family="monospace" font-size="7" fill="#777" text-anchor="middle">SEL</text>
+      </g>
+    </g>
+
+    <!-- Divider line 2 -->
+    <line x1="315" y1="170" x2="315" y2="390" stroke="#333" stroke-width="1" opacity="0.7"/>
+
+    <!-- === TrackLab Logo — centre of panel === -->
+    <g id="logo">
+      <!-- Sun icon -->
+      <g id="sun-icon" transform="translate(390, 258)">
+        <!-- Sun rays -->
+        <g stroke="#e8a000" stroke-width="2" stroke-linecap="round" opacity="0.85">
+          <line x1="0" y1="-34" x2="0" y2="-26"/>
+          <line x1="24" y1="-24" x2="19" y2="-19"/>
+          <line x1="34" y1="0" x2="26" y2="0"/>
+          <line x1="24" y1="24" x2="19" y2="19"/>
+          <line x1="0" y1="34" x2="0" y2="26"/>
+          <line x1="-24" y1="24" x2="-19" y2="19"/>
+          <line x1="-34" y1="0" x2="-26" y2="0"/>
+          <line x1="-24" y1="-24" x2="-19" y2="-19"/>
+        </g>
+        <!-- Sun circle -->
+        <circle r="20" fill="#e8a000" opacity="0.15"/>
+        <circle r="18" fill="none" stroke="#e8a000" stroke-width="2.5" opacity="0.9"/>
+        <!-- Horizon arc (solar tracker symbol) -->
+        <path d="M -18 4 Q 0 -8 18 4" fill="none" stroke="#e8a000" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+        <!-- Inner dot -->
+        <circle r="5" fill="#f0b820"/>
+      </g>
+
+      <!-- TRACKLAB text -->
+      <text x="390" y="310"
+            font-family="'Arial Black', 'Arial', sans-serif"
+            font-size="28"
+            font-weight="900"
+            fill="#f0a500"
+            text-anchor="middle"
+            letter-spacing="3">TRACKLAB</text>
+
+      <!-- Tagline -->
+      <text x="390" y="328"
+            font-family="Arial, sans-serif"
+            font-size="9"
+            fill="#666"
+            text-anchor="middle"
+            letter-spacing="2">SOLAR TRACKER CONTROL</text>
+    </g>
+
+    <!-- === Connectivity panel (right side of face) === -->
+    <g id="connectivity">
+      <text x="510" y="194" font-family="monospace" font-size="7" fill="#555" letter-spacing="0.5">CONNECT</text>
+
+      <!-- RJ45 / comms port -->
+      <g id="port-comms">
+        <rect x="508" y="205" width="48" height="32" rx="2" fill="#1e2025" stroke="#444" stroke-width="1"/>
+        <rect x="512" y="209" width="40" height="24" rx="1" fill="#161820"/>
+        <!-- Port pins -->
+        <line x1="518" y1="211" x2="518" y2="231" stroke="#333" stroke-width="1.5"/>
+        <line x1="524" y1="211" x2="524" y2="231" stroke="#333" stroke-width="1.5"/>
+        <line x1="530" y1="211" x2="530" y2="231" stroke="#333" stroke-width="1.5"/>
+        <line x1="536" y1="211" x2="536" y2="231" stroke="#333" stroke-width="1.5"/>
+        <line x1="542" y1="211" x2="542" y2="231" stroke="#333" stroke-width="1.5"/>
+        <text x="532" y="247" font-family="monospace" font-size="7" fill="#555" text-anchor="middle">ETH</text>
+      </g>
+
+      <!-- Power input connector -->
+      <g id="port-power">
+        <rect x="508" y="260" width="48" height="32" rx="2" fill="#1e2025" stroke="#444" stroke-width="1"/>
+        <circle cx="532" cy="276" r="12" fill="#161820" stroke="#333" stroke-width="1"/>
+        <circle cx="532" cy="276" r="7" fill="#1e2025"/>
+        <circle cx="532" cy="276" r="3" fill="#333"/>
+        <text x="532" y="302" font-family="monospace" font-size="7" fill="#555" text-anchor="middle">PWR IN</text>
+      </g>
+
+      <!-- Signal / actuator output -->
+      <g id="port-actuator">
+        <rect x="508" y="320" width="48" height="32" rx="2" fill="#1e2025" stroke="#444" stroke-width="1"/>
+        <rect x="514" y="326" width="10" height="20" rx="1" fill="#161820" stroke="#333" stroke-width="0.5"/>
+        <rect x="527" y="326" width="10" height="20" rx="1" fill="#161820" stroke="#333" stroke-width="0.5"/>
+        <rect x="540" y="326" width="10" height="20" rx="1" fill="#161820" stroke="#333" stroke-width="0.5"/>
+        <text x="532" y="362" font-family="monospace" font-size="7" fill="#555" text-anchor="middle">ACT OUT</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: actuator-hub — the drive pivot on the right          -->
+  <!-- ============================================================ -->
+  <g id="actuator-hub" transform="translate(668, 260)">
+    <!-- Arm connecting enclosure to hub -->
+    <rect x="0" y="-12" width="48" height="24" rx="4" fill="#2a2c33" stroke="#444" stroke-width="1"/>
+
+    <!-- Outer housing ring -->
+    <circle cx="90" cy="0" r="56" fill="#2a2c33" stroke="#444" stroke-width="1.5"/>
+    <!-- Hub body -->
+    <circle cx="90" cy="0" r="50" fill="url(#hubGrad)"/>
+    <!-- Inner ring detail -->
+    <circle cx="90" cy="0" r="32" fill="#1e2025" stroke="#333" stroke-width="1"/>
+    <!-- Hub bolt pattern -->
+    <circle cx="90" cy="-42" r="5" fill="#1a1c22" stroke="#555" stroke-width="1"/>
+    <circle cx="90" cy="42" r="5" fill="#1a1c22" stroke="#555" stroke-width="1"/>
+    <circle cx="48" cy="0" r="5" fill="#1a1c22" stroke="#555" stroke-width="1"/>
+    <circle cx="132" cy="0" r="5" fill="#1a1c22" stroke="#555" stroke-width="1"/>
+    <!-- Shaft centre -->
+    <circle cx="90" cy="0" r="14" fill="#1a1c22" stroke="#3a3d45" stroke-width="2"/>
+    <circle cx="90" cy="0" r="7" fill="#2a2c33" stroke="#555" stroke-width="1"/>
+    <!-- Shaft keyway -->
+    <rect x="87" y="-14" width="6" height="8" rx="1" fill="#1a1c22"/>
+    <!-- Reflection highlight -->
+    <ellipse cx="72" cy="-18" rx="12" ry="8" fill="white" opacity="0.05" transform="rotate(-30, 72, -18)"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: cable-conduit — wiring entry on left side            -->
+  <!-- ============================================================ -->
+  <g id="cable-conduit">
+    <!-- Conduit body -->
+    <rect x="88" y="240" width="64" height="22" rx="6" fill="url(#cableGrad)" stroke="#444" stroke-width="1"/>
+    <!-- Cable glands -->
+    <circle cx="102" cy="251" r="8" fill="#2a2c33" stroke="#555" stroke-width="1"/>
+    <circle cx="102" cy="251" r="4" fill="#1e2025"/>
+    <circle cx="124" cy="251" r="8" fill="#2a2c33" stroke="#555" stroke-width="1"/>
+    <circle cx="124" cy="251" r="4" fill="#1e2025"/>
+    <circle cx="146" cy="251" r="6" fill="#2a2c33" stroke="#555" stroke-width="1"/>
+    <circle cx="146" cy="251" r="3" fill="#1e2025"/>
+
+    <!-- Cable going out left -->
+    <path d="M 88 251 Q 55 251 40 265 Q 25 280 20 320" fill="none" stroke="#1e2025" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 88 251 Q 55 251 40 265 Q 25 280 20 320" fill="none" stroke="#2a2c33" stroke-width="7" stroke-linecap="round"/>
+    <!-- Cable sheath highlight -->
+    <path d="M 88 248 Q 56 248 42 262" fill="none" stroke="#3a3d45" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- GROUP: label — product label / serial plate                 -->
+  <!-- ============================================================ -->
+  <g id="product-label">
+    <rect x="330" y="358" width="120" height="36" rx="2" fill="#1a1c22" stroke="#333" stroke-width="0.5"/>
+    <text x="390" y="372" font-family="monospace" font-size="7" fill="#555" text-anchor="middle">TCU-1000</text>
+    <text x="390" y="384" font-family="monospace" font-size="6" fill="#444" text-anchor="middle">S/N: 2024-XXXXX</text>
+    <line x1="330" y1="377" x2="450" y2="377" stroke="#333" stroke-width="0.5"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Subtle floor shadow                                          -->
+  <!-- ============================================================ -->
+  <ellipse cx="410" cy="430" rx="260" ry="12" fill="#000000" opacity="0.18"/>
+</svg>
