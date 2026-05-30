@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="logo_reveal.css">
+  <link rel="stylesheet" href="logo_reveal.css?v=3">
 </head>
 <body class="reveal-body">
 
@@ -18,17 +18,14 @@
     
     <!-- The Rising Tracksol Icon Sun (Rises behind/above the logo) -->
     <div class="reveal-sun" id="sun">
+      <div class="sun-glow"></div>
       <img src="AA_jodev/tracksol%20icon.png" alt="Tracksol Solar Icon" class="sun-icon-img">
     </div>
 
     <!-- Centered Brand Logo -->
     <div class="reveal-logo-wrapper" id="logoWrapper">
-      <!-- <div class="logo-backlight"></div> -->
       <img src="AA_jodev/Logo Blue.webp" alt="Tracklab Solar Logo" class="reveal-logo" id="revealLogo">
     </div>
-
-    <!-- Solid Brand Slate Overlay (#1f1d34) (Starts at 100% opacity on load, fades to transparent) -->
-    <div class="brand-slate-overlay" id="slateOverlay"></div>
 
     <!-- Spaced Entry Controls (Positioned at bottom center, fades in once sunrise completes) -->
     <div class="reveal-controls" id="revealControls">
@@ -39,6 +36,6 @@
   </main>
 
   <!-- Scripts -->
-  <script src="logo_reveal.js"></script>
+  <script src="logo_reveal.js?v=3"></script>
 </body>
 </html>

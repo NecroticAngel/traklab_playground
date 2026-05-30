@@ -26,7 +26,7 @@
 }
 
 body.reveal-body {
-  background-color: var(--color-bg-light);
+  background-color: var(--color-brand-slate); /* Starts solid brand purple-slate */
   color: var(--color-brand-slate);
   font-family: var(--font-body);
   height: 100vh;
@@ -44,7 +44,8 @@ body.reveal-body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-bg-light); /* Clean white ending state */
+  background-color: var(--color-brand-slate); /* Starts solid brand purple-slate */
+  transition: background-color var(--transition-ultra-slow);
 }
 
 /* --------------------------------------------------------------------------
@@ -59,35 +60,46 @@ body.reveal-body {
   transform: translate(-50%, 120%); /* Starts fully stowed below screen */
   width: min(25vw, 130px);
   height: min(25vw, 130px);
-  z-index: 2;
+  z-index: 3; /* Positioned behind the logo wrapper (z-index 4) but above background */
   pointer-events: none;
   transition: transform var(--transition-ultra-slow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sun-icon-img {
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 4px 15px rgba(255, 177, 59, 0.35)) drop-shadow(0 0 5px rgba(255, 177, 59, 0.15));
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(255, 177, 59, 0.45));
   transition: transform var(--transition-slow);
 }
 
-/* --------------------------------------------------------------------------
-   BRAND SLATE OVERLAY & LOGO REVEAL
-   -------------------------------------------------------------------------- */
-
-/* Solid brand slate background overlay. Viewport starts here, then fades to white */
-.brand-slate-overlay {
+/* Beautiful breathing solar halo around the rising sun */
+.sun-glow {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-brand-slate);
-  z-index: 5;
+  width: 180%;
+  height: 180%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 177, 59, 0.4) 0%, rgba(255, 150, 0, 0.15) 50%, transparent 70%);
+  filter: blur(12px);
+  z-index: 1;
   pointer-events: none;
-  opacity: 1;
-  transition: opacity var(--transition-slow);
+  animation: sun-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes sun-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 /* Logo container with custom soft back-glow */
@@ -196,8 +208,8 @@ body.reveal-body {
 /* --------------------------------------------------------------------------
    SUNRISE ACTIVE TRANSFORMATION CLASSES (Triggered by JS)
    -------------------------------------------------------------------------- */
-.sun-rising .brand-slate-overlay {
-  opacity: 0; /* solid brand slate fades completely to transparent */
+.sun-rising .reveal-main {
+  background-color: var(--color-bg-light); /* Fades the background from slate to pure white */
 }
 
 .sun-rising .reveal-sun {
