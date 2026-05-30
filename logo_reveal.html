@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tracklab Solar - Experience the shift. Cinematic logo reveal.">
+  <title>Tracklab Solar | Welcome</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="logo_reveal.css">
+</head>
+<body class="reveal-body">
+
+  <main class="reveal-main" id="revealMain">
+    
+    <!-- Cinematic Sky Layers (Under the blue overlay) -->
+    <div class="reveal-sky-dawn" id="skyDawn"></div>
+    
+    <!-- The Rising Sun (Rises from bottom center, positioned behind the logo) -->
+    <div class="reveal-sun" id="sun">
+      <div class="sun-core"></div>
+      <div class="sun-glow"></div>
+    </div>
+
+    <!-- Centered Brand Logo -->
+    <div class="reveal-logo-wrapper" id="logoWrapper">
+      <div class="logo-backlight"></div>
+      <img src="AA_jodev/Logo Blue.webp" alt="Tracklab Solar Logo" class="reveal-logo" id="revealLogo">
+    </div>
+
+    <!-- Solid Brand Blue Viewport Overlay (Starts at 100% opacity on load, fades out as sun rises) -->
+    <div class="brand-blue-overlay" id="blueOverlay"></div>
+
+    <!-- Spaced Entry Controls (Positioned at bottom center, fades in once sunrise completes) -->
+    <div class="reveal-controls" id="revealControls">
+      <a href="index.html" class="enter-site-cta" id="enterCta">Enter Main Site</a>
+      <button class="replay-intro-btn" id="replayBtn">☼ Replay Intro</button>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="logo_reveal.js"></script>
+</body>
+</html>
