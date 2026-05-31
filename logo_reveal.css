@@ -13,7 +13,7 @@
   --font-body: 'Outfit', sans-serif;
 
   /* Animation Timings */
-  --transition-ultra-slow: 18.0s cubic-bezier(0.25, 1, 0.5, 1); /* Paced beautifully to half of previous speed */
+  --transition-ultra-slow: 14.0s cubic-bezier(0.25, 1, 0.5, 1); /* Paced beautifully to half of previous speed */
   --transition-slow: 13.2s cubic-bezier(0.25, 1, 0.5, 1);       /* Proportional slowing of logo reveal */
   --transition-medium: 4.8s cubic-bezier(0.25, 1, 0.5, 1);
   --transition-fast: 1.8s ease;
@@ -63,15 +63,14 @@ body.reveal-body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
   width: 100%;
   max-width: 320px;
 }
 
 .sun-glow-wrapper {
   position: relative;
-  width: min(25vw, 120px);
-  height: min(25vw, 120px);
+  width: min(25vw, 220px);
+  /* height: min(25vw, 120px); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,15 +87,15 @@ body.reveal-body {
 
 /* Beautiful breathing solar halo around the rising sun */
 .sun-glow {
-  position: absolute;
-  width: 180%;
-  height: 180%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 177, 59, 0.4) 0%, rgba(255, 150, 0, 0.15) 50%, transparent 70%);
-  filter: blur(12px);
-  z-index: 1;
-  pointer-events: none;
-  animation: sun-pulse 4s ease-in-out infinite alternate;
+	position: absolute;
+	width: 180%;
+	height: 180%;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgb(255 255 255 / 40%) 0%, rgb(255 255 255 / 15%) 50%, transparent 70%);
+	filter: blur(12px);
+	z-index: 1;
+	pointer-events: none;
+	animation: sun-pulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes sun-pulse {
@@ -158,6 +157,7 @@ body.reveal-body {
     rgba(31, 29, 52, 0.0) 100%
   );
   transform: translateY(0%);
+  height:190vh;
 }
 
 .logo-backlight {
@@ -248,10 +248,40 @@ body.reveal-body {
 }
 
 /* --------------------------------------------------------------------------
+   BOTTOM LEFT FLOATING WATERMARK TRACKER
+   -------------------------------------------------------------------------- */
+.bottom-left-tracker {
+  position: absolute;
+  bottom: 3%;
+  left: 3%;
+  z-index: 4; /* Under the mask initially, revealed as mask rises */
+  opacity: 0;
+  transform: translate(-20px, 20px);
+  pointer-events: none;
+}
+
+.sun-rising .bottom-left-tracker {
+  opacity: 0.15; /* Subtle blueprint watermark styling */
+  transform: translate(0, 0);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transition-delay: 2.0s;
+}
+
+.tracker-span-reveal {
+  transform: rotate(-35deg); /* Stowed East */
+}
+
+.sun-rising .tracker-span-reveal {
+  transform: rotate(20deg); /* Aligns to track the risen sun */
+  transition: transform var(--transition-ultra-slow);
+  transition-delay: 1.0s;
+}
+
+/* --------------------------------------------------------------------------
    SUNRISE ACTIVE TRANSFORMATION CLASSES (Triggered by JS)
    -------------------------------------------------------------------------- */
 .sun-rising .brand-slate-mask {
-  transform: translateY(-100%);
+  transform: translateY(-80%);
   transition: transform var(--transition-ultra-slow);
 }
 
@@ -266,7 +296,7 @@ body.reveal-body {
   transition: 
     opacity var(--transition-slow), 
     transform var(--transition-slow);
-  transition-delay: 4.0s;
+  transition-delay: 8.0s;
 }
 
 .sun-rising .reveal-controls {
