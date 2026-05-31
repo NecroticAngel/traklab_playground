@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackLab — Engineered in Africa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:transparent;}
+  body{display:flex;align-items:center;justify-content:center;}
+  /* drop this .card anywhere; it holds the 488x341 animation */
+  .card{width:488px;height:341px;max-width:100%;border-radius:16px;overflow:hidden;
+    box-shadow:0 18px 50px rgba(35,37,68,.18);}
+  .card svg{width:100%;height:100%;display:block;}
+  .card text{font-family:"Rajdhani",system-ui,sans-serif;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <svg id="ax" viewBox="0 0 488 341" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="Animated map of Africa showing TrackLab's support and telemetry network pulsing to a hub in Southern Africa, under a sun.">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1b1d38"/><stop offset="1" stop-color="#232544"/>
+        </linearGradient>
+        <filter id="g" x="-120%" y="-120%" width="340%" height="340%">
+          <feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="gs" x="-150%" y="-150%" width="400%" height="400%">
+          <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <rect width="488" height="341" fill="url(#bg)"/>
+
+      <!-- corner circuit deco -->
+      <g stroke="#ffb700" stroke-width="1.2" fill="none" opacity="0.25">
+        <path d="M20 30 H70 V54 H96"/><path d="M20 50 H44"/>
+        <path d="M468 300 H418 V280 H392"/><path d="M468 282 H446"/>
+      </g>
+      <g fill="#ffb700" opacity="0.35">
+        <circle cx="20" cy="30" r="2"/><circle cx="96" cy="54" r="2"/>
+        <circle cx="468" cy="300" r="2"/><circle cx="392" cy="280" r="2"/>
+      </g>
+
+      <!-- dotted Africa -->
+      <g id="africa"></g>
+
+      <!-- network lines (faint) + flowing pulses converge to hub -->
+      <g id="links" fill="none" stroke="#5a4a2e" stroke-width="1.4" opacity="0.5">
+        <path id="l1" d="M269 60 L248 259"/>
+        <path id="l2" d="M326 132 L248 259"/>
+        <path id="l3" d="M183 122 L248 259"/>
+        <path id="l4" d="M244 178 L248 259"/>
+        <path d="M183 122 L269 60" opacity="0.6"/>
+        <path d="M269 60 L326 132" opacity="0.6"/>
+      </g>
+      <g fill="none" stroke="#ffb700" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 13" opacity="0.9">
+        <use href="#l1"><animate attributeName="stroke-dashoffset" from="0" to="-150" dur="2.4s" repeatCount="indefinite"/></use>
+        <use href="#l2"><animate attributeName="stroke-dashoffset" from="0" to="-150" dur="2.7s" repeatCount="indefinite"/></use>
+        <use href="#l3"><animate attributeName="stroke-dashoffset" from="0" to="-150" dur="2.1s" repeatCount="indefinite"/></use>
+        <use href="#l4"><animate attributeName="stroke-dashoffset" from="0" to="-150" dur="1.9s" repeatCount="indefinite"/></use>
+      </g>
+      <g fill="#ffd166" filter="url(#g)">
+        <circle r="3"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#l1"/></animateMotion></circle>
+        <circle r="3"><animateMotion dur="2.7s" begin="0.5s" repeatCount="indefinite"><mpath href="#l2"/></animateMotion></circle>
+        <circle r="3"><animateMotion dur="2.1s" begin="0.3s" repeatCount="indefinite"><mpath href="#l3"/></animateMotion></circle>
+        <circle r="3"><animateMotion dur="1.9s" begin="0.8s" repeatCount="indefinite"><mpath href="#l4"/></animateMotion></circle>
+      </g>
+
+      <!-- outer nodes -->
+      <g fill="#ffb700">
+        <circle cx="269" cy="60" r="3.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" repeatCount="indefinite"/></circle>
+        <circle cx="326" cy="132" r="3.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.6s" begin="0.4s" repeatCount="indefinite"/></circle>
+        <circle cx="183" cy="122" r="3.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.0s" begin="0.7s" repeatCount="indefinite"/></circle>
+        <circle cx="244" cy="178" r="3"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" begin="0.2s" repeatCount="indefinite"/></circle>
+      </g>
+
+      <!-- HUB (Southern Africa) -->
+      <g>
+        <circle cx="248" cy="259" r="9" fill="none" stroke="#ffb700" stroke-width="1.6" opacity="0.7">
+          <animate attributeName="r" values="9;22;9" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0;0.7" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="248" cy="259" r="6.5" fill="#ffb700" filter="url(#gs)"/>
+        <circle cx="248" cy="259" r="3" fill="#fff7e0"/>
+      </g>
+
+      <!-- sun (solar) -->
+      <g transform="translate(434 54)">
+        <g stroke="#ffb700" stroke-width="2.4" stroke-linecap="round" filter="url(#g)">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite"/>
+          <line x1="0" y1="-20" x2="0" y2="-27"/><line x1="0" y1="20" x2="0" y2="27"/>
+          <line x1="-20" y1="0" x2="-27" y2="0"/><line x1="20" y1="0" x2="27" y2="0"/>
+          <line x1="-14" y1="-14" x2="-19" y2="-19"/><line x1="14" y1="-14" x2="19" y2="-19"/>
+          <line x1="-14" y1="14" x2="-19" y2="19"/><line x1="14" y1="14" x2="19" y2="19"/>
+        </g>
+        <circle r="15" fill="#ffb700" filter="url(#gs)"/>
+        <circle r="15" fill="#ffd166" opacity="0.55"/>
+      </g>
+
+      <!-- labels -->
+      <g>
+        <circle cx="30" cy="312" r="3.5" fill="#ffb700"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+        <text x="42" y="316" font-size="13" font-weight="700" letter-spacing="2.5" fill="#ffd166">ENGINEERED IN AFRICA</text>
+      </g>
+      <text x="468" y="36" text-anchor="end" font-size="11" font-weight="600" letter-spacing="2" fill="#8b8da6">SUPPORT NETWORK · LIVE</text>
+    </svg>
+  </div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const g=document.getElementById("africa");
+  const poly=[[0.28,0.00],[0.55,0.00],[0.66,0.04],[0.72,0.14],[0.82,0.24],[1.00,0.30],
+    [0.84,0.36],[0.80,0.46],[0.74,0.60],[0.70,0.74],[0.60,0.90],[0.52,1.00],
+    [0.44,0.96],[0.40,0.82],[0.32,0.64],[0.26,0.50],[0.34,0.44],[0.18,0.34],
+    [0.06,0.30],[0.10,0.20],[0.18,0.08]];
+  const X0=150,Y0=45,W=205,H=255;
+  const P=poly.map(([nx,ny])=>[X0+nx*W, Y0+ny*H]);
+  function inside(x,y){let c=false,n=P.length,j=n-1;
+    for(let i=0;i<n;i++){const[xi,yi]=P[i],[xj,yj]=P[j];
+      if(((yi>y)!=(yj>y)) && (x<(xj-xi)*(y-yi)/(yj-yi)+xi)) c=!c; j=i;}
+    return c;}
+  for(let y=Y0;y<Y0+H;y+=8){
+    for(let x=X0;x<X0+W;x+=8){
+      if(inside(x,y)){
+        const c=document.createElementNS(NS,"circle");
+        c.setAttribute("cx",x.toFixed(1));c.setAttribute("cy",y.toFixed(1));
+        c.setAttribute("r","1.9");c.setAttribute("fill","#3a3d63");
+        g.appendChild(c);
+      }
+    }
+  }
+})();
+</script>
+</body>
+</html>

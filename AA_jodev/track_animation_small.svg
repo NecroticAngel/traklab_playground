@@ -1,0 +1,62 @@
+<svg id="trk" viewBox="0 0 560 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated single-axis solar tracker following the sun with live angle and power readout">
+        <defs>
+          <filter id="sg" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="11" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+          </filter>
+          <filter id="sg2" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="4" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+          </filter>
+        </defs>
+
+        <!-- sun path guide -->
+        <path d="M15 470 Q200 -330 385 470" stroke="#ffb700" stroke-width="1.5" stroke-dasharray="3 9" opacity="0.30"></path>
+        <!-- ground -->
+        <line x1="30" y1="540" x2="530" y2="540" stroke="#232544" stroke-width="2" opacity="0.85"></line>
+
+        <!-- sun -->
+        <g id="sun" opacity="0" transform="translate(187.6 70.9)" style="opacity: 1;">
+          <g stroke="#ffb700" stroke-width="3" stroke-linecap="round" filter="url(#sg2)">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite"></animateTransform>
+            <line x1="0" y1="-34" x2="0" y2="-46"></line><line x1="0" y1="34" x2="0" y2="46"></line>
+            <line x1="-34" y1="0" x2="-46" y2="0"></line><line x1="34" y1="0" x2="46" y2="0"></line>
+            <line x1="-24" y1="-24" x2="-32" y2="-32"></line><line x1="24" y1="-24" x2="32" y2="-32"></line>
+            <line x1="-24" y1="24" x2="-32" y2="32"></line><line x1="24" y1="24" x2="32" y2="32"></line>
+          </g>
+          <circle r="26" fill="#ffb700" filter="url(#sg)"></circle>
+          <circle r="26" fill="#ffd166" opacity="0.5"></circle>
+        </g>
+
+        <!-- beam -->
+        <line id="beam" x1="200" y1="470" x2="187.6" y2="70.9" stroke="#ffb700" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10" opacity="0" style="opacity: 0.9;">
+          <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="1.4s" repeatCount="indefinite"></animate>
+        </line>
+
+        <!-- post -->
+        <rect x="193" y="470" width="14" height="72" rx="2" fill="#232544"></rect>
+
+        <!-- panel -->
+        <g id="panel" transform="rotate(-1.78 200 470)">
+          <rect x="100" y="458" width="200" height="24" rx="3" fill="#232544"></rect>
+          <rect x="100" y="458" width="200" height="5" rx="2" fill="#ffb700"></rect>
+          <g stroke="#3a3d63" stroke-width="1">
+            <line x1="133" y1="463" x2="133" y2="482"></line><line x1="166" y1="463" x2="166" y2="482"></line>
+            <line x1="200" y1="463" x2="200" y2="482"></line><line x1="234" y1="463" x2="234" y2="482"></line>
+            <line x1="267" y1="463" x2="267" y2="482"></line><line x1="100" y1="470" x2="300" y2="470"></line>
+          </g>
+          <circle cx="200" cy="454" r="4.5" fill="#ffb700" filter="url(#sg2)">
+            <animate attributeName="r" values="3.5;5.5;3.5" dur="1.6s" repeatCount="indefinite"></animate>
+          </circle>
+        </g>
+        <circle cx="200" cy="470" r="6" fill="#ffb700" stroke="#3a2606" stroke-width="1"></circle>
+
+        <!-- controller wire + box -->
+        <path d="M340 512 H207" stroke="#232544" stroke-width="2" opacity="0.5"></path>
+        <g>
+          <rect x="340" y="478" width="172" height="62" rx="8" fill="#fff" stroke="#232544" stroke-width="1.4"></rect>
+          <text x="354" y="499" class="tk" font-size="12" font-weight="700" letter-spacing="2" fill="#232544">TRACKING</text>
+          <text id="angT" x="354" y="517" class="tk" font-size="12" font-weight="600" fill="#6b6e85">ANGLE -2°</text>
+          <rect x="354" y="524" width="120" height="7" rx="3" fill="#eef1f8"></rect>
+          <rect id="pwr" x="354" y="524" width="120.0" height="7" rx="3" fill="#ffb700"></rect>
+          <circle cx="500" cy="494" r="4" fill="#ffb700"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.4s" repeatCount="indefinite"></animate></circle>
+        </g>
+      </svg>
