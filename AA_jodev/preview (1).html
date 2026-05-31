@@ -1,0 +1,168 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Reveal Fade with Replay</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #111;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .revealed-item {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      padding: 2rem;
+      color: red;
+      z-index: 1;
+      background: #fff;
+    }
+
+    .revealed-item h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2rem, 7vw, 5rem);
+      line-height: 1;
+    }
+
+    .revealed-item p {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      opacity: 0.85;
+    }
+
+    .blue-reveal-mask {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(8, 31, 74, 1) 0%,
+        rgba(20, 83, 160, 0.95) 35%,
+        rgba(37, 99, 235, 0.99) 68%,
+        rgba(37, 99, 235, 0) 100%
+      );
+
+      transform: translateY(0%);
+    }
+
+    .blue-reveal-mask.is-animating {
+      animation: revealUp 10s ease-in-out forwards;
+    }
+
+    .replay-button {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 10;
+
+      border: 0;
+      border-radius: 999px;
+      padding: 0.85rem 1.15rem;
+
+      color: white;
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+
+      transition:
+        transform 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .replay-button:hover {
+      transform: translateY(-2px);
+      background: rgba(30, 41, 59, 0.95);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .replay-button:active {
+      transform: translateY(0);
+    }
+
+    .replay-button:focus-visible {
+      outline: 3px solid rgba(147, 197, 253, 0.9);
+      outline-offset: 4px;
+    }
+
+    @keyframes revealUp {
+      from {
+        transform: translateY(0%);
+      }
+
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blue-reveal-mask.is-animating {
+        animation: none;
+        transform: translateY(-100%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scene">
+    <div class="revealed-item">
+      <div>
+        <h1>Revealed Item</h1>
+        <p>The item appears as the blue gradient fades upward.</p>
+      </div>
+    </div>
+
+    <div class="blue-reveal-mask is-animating" id="blueRevealMask"></div>
+  </div>
+
+  <button class="replay-button" type="button" id="replayButton">
+    Replay
+  </button>
+
+  <script>
+    const mask = document.getElementById("blueRevealMask");
+    const replayButton = document.getElementById("replayButton");
+
+    function replayReveal() {
+      mask.classList.remove("is-animating");
+
+      // Force the browser to flush the style change.
+      // This lets the same CSS animation restart reliably.
+      void mask.offsetWidth;
+
+      mask.classList.add("is-animating");
+    }
+
+    replayButton.addEventListener("click", replayReveal);
+  </script>
+
+</body></html>

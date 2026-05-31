@@ -127,12 +127,13 @@ body.reveal-body {
   opacity: 0;
   transform: scale(0.93);
   padding: 0 1.5rem;
+  height: 50vw;
 }
 
 /* Premium styled slogan typography */
 .reveal-slogan {
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 3.8vw, 1.85rem);
+  font-size: clamp(1.25rem, 3.8vw, 1.2rem);
   font-weight: 700;
   color: var(--color-brand-slate);
   text-align: center;
@@ -372,7 +373,7 @@ body.reveal-body {
 .yield-badge-2x {
   position: absolute;
   left: 95px; /* Sits directly next to the SVG bar */
-  bottom: 50%; /* Aligned inside the high-yield tracking zone (above y=500 threshold) */
+  top: 30%; /* Aligned inside the high-yield tracking zone (above y=500 threshold) */
   display: flex;
   align-items: center;
   gap: 0.3rem;
