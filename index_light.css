@@ -1745,6 +1745,35 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ==========================================================================
+   DESKTOP FULL-PAGE SCROLL SNAPPING SYSTEM
+   ========================================================================== */
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  section, footer {
+    scroll-snap-align: start;
+    scroll-margin-top: 80px; /* Offset for sticky main header */
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  section.hero {
+    min-height: 100vh;
+    scroll-margin-top: 0;
+  }
+
+  .section-padding {
+    padding: 4rem 0 !important;
+  }
+}
+
 
 
 
