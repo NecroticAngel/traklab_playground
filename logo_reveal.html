@@ -30,18 +30,45 @@
       <h3 class="reveal-slogan">Solar innovation in africa.</h3>
     </div>
 
-    <!-- Left-Side Dynamic Energy Yield Meter -->
+    <!-- Left-Side Full-Height SVG Energy Yield Meter -->
     <div class="left-energy-meter">
       <div class="meter-label">GENERATION YIELD</div>
-      <div class="meter-track">
-        <div class="energy-bar-fill">
-          <div class="energy-glow-overlay"></div>
-        </div>
-        <!-- Threshold marker corresponding to the logo level -->
-        <div class="meter-threshold-marker">
-          <span class="threshold-label">2X STAGE</span>
-        </div>
+      
+      <div class="meter-svg-container">
+        <svg viewBox="0 0 120 1000" class="energy-svg" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- High-energy neon gradient for the fill line -->
+            <linearGradient id="energyGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#1f1d34" />
+              <stop offset="60%" stop-color="#ffb13b" />
+              <stop offset="100%" stop-color="#ff8c00" />
+            </linearGradient>
+            
+            <!-- Neon glow filter to trigger on the top section of the line -->
+            <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          
+          <!-- Background track (20px wide) -->
+          <rect x="20" y="50" width="20" height="900" rx="10" fill="rgba(31, 29, 52, 0.05)" stroke="rgba(31, 29, 52, 0.08)" stroke-width="1.5" />
+          
+          <!-- Threshold line -->
+          <line x1="12" y1="500" x2="48" y2="500" stroke="rgba(31, 29, 52, 0.25)" stroke-width="1.5" stroke-dasharray="4 3" />
+          <text x="56" y="503" font-family="var(--font-body)" font-size="10" font-weight="700" fill="rgba(31, 29, 52, 0.35)" letter-spacing="0.05em">2X STAGE</text>
+          
+          <!-- The Dynamic Animated Fill Line (20px wide) -->
+          <line x1="30" y1="940" x2="30" y2="60" stroke="url(#energyGradient)" stroke-width="20" stroke-linecap="round" class="energy-svg-line" />
+          
+          <!-- Glowing Overlay Line that fades in at 8.0s -->
+          <line x1="30" y1="940" x2="30" y2="60" stroke="url(#energyGradient)" stroke-width="20" stroke-linecap="round" filter="url(#neonGlow)" class="energy-svg-glow" />
+        </svg>
       </div>
+
       <!-- 2X Indicator Badge next to the meter -->
       <div class="yield-badge-2x">
         <span class="badge-icon">☼</span>
