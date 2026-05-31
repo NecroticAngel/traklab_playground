@@ -261,7 +261,7 @@ body.reveal-body {
 }
 
 .sun-rising .bottom-left-tracker {
-  opacity: 0.15; /* Subtle blueprint watermark styling */
+  opacity: 0.75; /* Subtle blueprint watermark styling */
   transform: translate(0, 0);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
   transition-delay: 2.0s;
@@ -275,6 +275,188 @@ body.reveal-body {
   transform: rotate(20deg); /* Aligns to track the risen sun */
   transition: transform var(--transition-ultra-slow);
   transition-delay: 1.0s;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT SIDE DYNAMIC ENERGY YIELD METER
+   -------------------------------------------------------------------------- */
+.left-energy-meter {
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  transform: translateY(-50%) translate(-20px, 0); /* Shifted left slightly on load */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  z-index: 4; /* Under the mask initially, revealed as mask rises */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sun-rising .left-energy-meter {
+  opacity: 1;
+  transform: translateY(-50%) translate(0, 0);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transition-delay: 1.8s;
+}
+
+.meter-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(31, 29, 52, 0.45);
+  text-transform: uppercase;
+  writing-mode: vertical-lr; /* Vertical text label looks extremely high-tech */
+  transform: rotate(180deg);
+}
+
+.meter-track {
+  position: relative;
+  width: 8px;
+  height: min(40vh, 280px);
+  background: rgba(31, 29, 52, 0.05);
+  border: 1px solid rgba(31, 29, 52, 0.08);
+  border-radius: 20px;
+  overflow: visible; /* Let markers and badges align next to it */
+}
+
+/* The vertical fill bar, growing from the bottom up */
+.energy-bar-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* Starts empty */
+  background: linear-gradient(to top, var(--color-brand-slate) 0%, var(--color-accent-gold) 60%, #ff8c00 100%);
+  border-radius: 20px;
+}
+
+.sun-rising .energy-bar-fill {
+  height: 92%; /* Fills up to 92% in sync with the 14s rise */
+  transition: height var(--transition-ultra-slow);
+  transition-delay: 0.2s;
+}
+
+/* Threshold line at 60% height representing the logo level */
+.meter-threshold-marker {
+  position: absolute;
+  bottom: 60%;
+  left: -2px;
+  width: 12px;
+  height: 1px;
+  background: rgba(31, 29, 52, 0.25);
+  display: flex;
+  align-items: center;
+}
+
+.threshold-label {
+  position: absolute;
+  left: 18px;
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(31, 29, 52, 0.35);
+  white-space: nowrap;
+}
+
+/* Glow overlay that lights up on the top section of the fill bar */
+.energy-glow-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: inherit;
+  opacity: 0;
+  filter: blur(8px) drop-shadow(0 0 12px rgba(255, 140, 0, 0.85));
+}
+
+/* Lights up exactly at 8.0s delay when the sun/fill passes the logo threshold! */
+.sun-rising .energy-glow-overlay {
+  opacity: 1;
+  transition: opacity var(--transition-slow);
+  transition-delay: 8.0s;
+  animation: energy-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes energy-pulse {
+  0% {
+    filter: blur(6px) drop-shadow(0 0 8px rgba(255, 140, 0, 0.65));
+  }
+  100% {
+    filter: blur(10px) drop-shadow(0 0 16px rgba(255, 140, 0, 0.95));
+  }
+}
+
+/* 2X Yield Indicator Badge, positioned next to the upper section of the meter */
+.yield-badge-2x {
+  position: absolute;
+  left: 20px; /* Sits to the right of the meter */
+  bottom: 72%; /* Aligned inside the high-yield tracking zone */
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #ffffff;
+  border: 1px solid #ff8c00;
+  border-radius: 30px;
+  padding: 0.3rem 0.65rem;
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.1);
+  opacity: 0;
+  transform: translateX(-10px) scale(0.9);
+  pointer-events: none;
+}
+
+/* Fades and floats in exactly at 8.0s when the sun passes the threshold! */
+.sun-rising .yield-badge-2x {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  box-shadow: 
+    0 10px 25px rgba(255, 140, 0, 0.25),
+    0 0 15px rgba(255, 177, 59, 0.35);
+  transition: 
+    opacity var(--transition-slow), 
+    transform var(--transition-slow),
+    box-shadow var(--transition-slow);
+  transition-delay: 8.0s; /* Triggers exactly when the sun passes the logo level */
+  animation: badge-pulse 2s ease-in-out infinite alternate;
+}
+
+.yield-badge-2x .badge-icon {
+  color: #ff8c00;
+  font-size: 0.75rem;
+  animation: spin-slow 10s linear infinite;
+  display: inline-block;
+}
+
+.yield-badge-2x .badge-text {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ff8c00;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes badge-pulse {
+  0% {
+    box-shadow: 
+      0 6px 15px rgba(255, 140, 0, 0.15),
+      0 0 8px rgba(255, 177, 59, 0.2);
+    transform: scale(0.97);
+  }
+  100% {
+    box-shadow: 
+      0 12px 30px rgba(255, 140, 0, 0.35),
+      0 0 20px rgba(255, 177, 59, 0.5);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* --------------------------------------------------------------------------
