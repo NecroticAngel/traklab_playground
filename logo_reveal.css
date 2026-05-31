@@ -329,20 +329,22 @@ body.reveal-body {
 /* Dynamic line animations for background-fill and neon-glow overlay */
 .energy-svg-line,
 .energy-svg-glow {
-  stroke-dasharray: 880px;
-  stroke-dashoffset: 880px; /* Starts completely empty */
+  stroke: #ffb13b; /* Defensive fallback solid color */
+  stroke: url(#energyGradient);
+  stroke-dasharray: 100%;
+  stroke-dashoffset: 100%; /* Starts completely empty */
 }
 
 /* Fills the line over the 14s rise timeline */
 .sun-rising .energy-svg-line {
-  stroke-dashoffset: 70px; /* Fills up to 92% of the way */
+  stroke-dashoffset: 8%; /* Fills up to 92% of the way */
   transition: stroke-dashoffset var(--transition-ultra-slow);
   transition-delay: 0.2s;
 }
 
 /* Fills matching the line, but opacity is delayed until the 8.0s threshold! */
 .sun-rising .energy-svg-glow {
-  stroke-dashoffset: 70px;
+  stroke-dashoffset: 8%;
   opacity: 0; /* Starts completely transparent */
   transition: 
     stroke-dashoffset var(--transition-ultra-slow),
