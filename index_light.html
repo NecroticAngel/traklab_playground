@@ -1293,7 +1293,88 @@
     </div>
   </section>
 
+  <!-- --- Yield Savings Calculator Section --- -->
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="calculator-grid">
+        
+        <div class="calculator-info">
+          <div class="section-badge">Yield Premium Calculator</div>
+          <h2 class="section-title">Compute your sun-tracking advantage.</h2>
+          <p class="section-desc">Traditional solar systems sit stagnant. TrackLab's single-axis structural tracker actively pivots to follow the sun. Compare the performance gains and amortization rates yourself.</p>
+          
+          <div class="mini-metrics">
+            <div class="mini-metric-item">
+              <span class="metric-label">Yield Premium</span>
+              <span class="metric-val accent-text" id="yieldPremiumBadge">+25.0%</span>
+            </div>
+            <div class="mini-metric-item">
+              <span class="metric-label">Control Protection</span>
+              <span class="metric-val">IP65 Rating</span>
+            </div>
+          </div>
+        </div>
 
+        <!-- Glassmorphic Calculator Widget -->
+        <div class="calculator-card">
+          <div class="calculator-card-bg"></div>
+          
+          <!-- System Type Comparative Switcher -->
+          <div class="tracker-toggle-container">
+            <span class="toggle-title">Structural Mounting System</span>
+            <div class="toggle-switch-wrapper">
+              <button class="type-toggle-btn" id="btnFixedTilt">Fixed-Tilt</button>
+              <button class="type-toggle-btn active" id="btnTracker">TrackLab Tracker</button>
+            </div>
+          </div>
+
+          <!-- Interactive Sliders -->
+          <div class="input-group">
+            <div class="slider-header">
+              <label for="monthlyBill">Current Monthly Bill</label>
+              <span class="slider-value" id="monthlyBillVal">$180</span>
+            </div>
+            <input type="range" id="monthlyBill" min="50" max="800" step="10" value="180" class="custom-slider">
+          </div>
+
+          <div class="input-group">
+            <div class="slider-header">
+              <label for="sunHours">Average Daily Sunlight</label>
+              <span class="slider-value" id="sunHoursVal">4.5 hrs</span>
+            </div>
+            <input type="range" id="sunHours" min="2" max="8" step="0.5" value="4.5" class="custom-slider">
+          </div>
+
+          <hr class="card-divider">
+
+          <!-- Real-time outputs -->
+          <div class="results-grid">
+            <div class="result-box">
+              <span class="result-label" id="monthlySavingsLabel">Tracker Monthly Savings</span>
+              <span class="result-value" id="monthlySavings">$191</span>
+            </div>
+            <div class="result-box">
+              <span class="result-label" id="lifetimeSavingsLabel">25-Year Tracker Savings</span>
+              <span class="result-value accent-text" id="lifetimeSavings">$57,375</span>
+            </div>
+            <div class="result-box">
+              <span class="result-label">Clean Energy Generated (Annual)</span>
+              <span class="result-value" id="carbonSavings">5.3 MWh</span>
+            </div>
+            <div class="result-box">
+              <span class="result-label">Est. System Amortization</span>
+              <span class="result-value" id="paybackPeriod">4.4 Years</span>
+            </div>
+          </div>
+
+          <div class="calculator-footnote">
+            *Calculations compare TrackLab astronomical single-axis slew trackers (+25% generation efficiency) versus a South-facing 30° fixed-tilt solar installation.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- --- FAQ Section --- -->
   <section class="section-padding" id="faq">
@@ -1542,6 +1623,155 @@
 
       counterElements.forEach(el => observer.observe(el));
       progressFills.forEach(fill => observer.observe(fill));
+
+      // ==========================================================================
+      // INTERACTIVE COMPARATIVE SAVINGS CALCULATOR
+      // ==========================================================================
+      const monthlyBillInput = document.getElementById('monthlyBill');
+      const sunHoursInput = document.getElementById('sunHours');
+      
+      const monthlyBillVal = document.getElementById('monthlyBillVal');
+      const sunHoursVal = document.getElementById('sunHoursVal');
+
+      const monthlySavingsEl = document.getElementById('monthlySavings');
+      const lifetimeSavingsEl = document.getElementById('lifetimeSavings');
+      const carbonSavingsEl = document.getElementById('carbonSavings');
+      const paybackPeriodEl = document.getElementById('paybackPeriod');
+
+      const yieldPremiumBadge = document.getElementById('yieldPremiumBadge');
+      const monthlySavingsLabel = document.getElementById('monthlySavingsLabel');
+      const lifetimeSavingsLabel = document.getElementById('lifetimeSavingsLabel');
+
+      const btnFixedTilt = document.getElementById('btnFixedTilt');
+      const btnTracker = document.getElementById('btnTracker');
+
+      let isTrackerMode = true; // Default to TrackLab single-axis tracker
+
+      const calculateSolarSavings = () => {
+        const bill = parseFloat(monthlyBillInput.value);
+        const hours = parseFloat(sunHoursInput.value);
+
+        // Update labels
+        monthlyBillVal.textContent = `$${bill}`;
+        sunHoursVal.textContent = `${hours} hrs`;
+
+        // Base savings ratio for fixed-tilt (60% up to 80% based on sun exposure)
+        let savingsPct = Math.min(0.80, 0.50 + (hours - 2) * 0.05);
+        
+        // TrackLab Tracker Premium: +25% Yield increase
+        let yieldMultiplier = 1.0;
+        if (isTrackerMode) {
+          yieldMultiplier = 1.25;
+          savingsPct = Math.min(0.95, savingsPct * yieldMultiplier); // Cap offset at 95%
+        }
+
+        const targetMonthlySavings = Math.round(bill * savingsPct);
+
+        // 25-year cumulative savings with 4.5% annual utility inflation
+        let targetLifetimeSavings = 0;
+        let currentAnnualSavings = targetMonthlySavings * 12;
+        for (let year = 1; year <= 25; year++) {
+          targetLifetimeSavings += currentAnnualSavings;
+          currentAnnualSavings *= 1.045;
+        }
+        targetLifetimeSavings = Math.round(targetLifetimeSavings);
+
+        // Clean energy generated: roughly 1 MWh per $36 fixed monthly savings
+        // Tracker increases energy output directly by 25%
+        const targetCarbonSavings = parseFloat(((targetMonthlySavings * 12 * 0.038) * yieldMultiplier).toFixed(1));
+
+        // Payback Period: Upfront system cost estimated at 75x monthly bill.
+        // Tracking components add about 15% upfront structure cost.
+        // Applying the 30% Federal Investment Tax Credit (ITC)
+        const baseSystemCost = bill * 75;
+        const systemCost = isTrackerMode ? baseSystemCost * 1.15 : baseSystemCost;
+        const netSystemCost = systemCost * 0.70;
+        const annualSavings = targetMonthlySavings * 12;
+        const targetPaybackPeriod = parseFloat((netSystemCost / annualSavings).toFixed(1));
+
+        // Update comparative labels and badges
+        if (isTrackerMode) {
+          yieldPremiumBadge.textContent = '+25.0%';
+          yieldPremiumBadge.classList.add('accent-text');
+          monthlySavingsLabel.textContent = 'Tracker Monthly Savings';
+          lifetimeSavingsLabel.textContent = '25-Yr Tracker Savings';
+        } else {
+          yieldPremiumBadge.textContent = 'Base';
+          yieldPremiumBadge.classList.remove('accent-text');
+          monthlySavingsLabel.textContent = 'Fixed Monthly Savings';
+          lifetimeSavingsLabel.textContent = '25-Yr Fixed Savings';
+        }
+
+        // Animate output values to their new targets
+        animateCalcNumber(monthlySavings, targetMonthlySavings, '$');
+        animateCalcNumber(lifetimeSavings, targetLifetimeSavings, '$', true);
+        animateCalcNumber(carbonSavings, targetCarbonSavings, '', false, ' MWh');
+        animateCalcNumber(paybackPeriod, targetPaybackPeriod, '', false, ' Years');
+      };
+
+      /**
+       * Smoothly animates numbers from their current values to target values
+       */
+      const animateCalcNumber = (element, target, prefix = '', isCurrencyLong = false, suffix = '') => {
+        let start = parseFloat(element.innerText.replace(/[^0-9.]/g, '')) || 0;
+        const duration = 350; // ms
+        const startTime = performance.now();
+
+        const update = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Ease out quad
+          const easeProgress = progress * (2 - progress);
+          const current = start + (target - start) * easeProgress;
+
+          if (isCurrencyLong) {
+            element.textContent = `${prefix}${Math.round(current).toLocaleString()}${suffix}`;
+          } else if (suffix.includes('MWh') || suffix.includes('Years')) {
+            element.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
+          } else {
+            element.textContent = `${prefix}${Math.round(current)}${suffix}`;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            if (isCurrencyLong) {
+              element.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
+            } else {
+              element.textContent = `${prefix}${target}${suffix}`;
+            }
+          }
+        };
+
+        requestAnimationFrame(update);
+      };
+
+      // Event Listeners for inputs
+      monthlyBillInput.addEventListener('input', calculateSolarSavings);
+      sunHoursInput.addEventListener('input', calculateSolarSavings);
+
+      // Switcher triggers
+      btnFixedTilt.addEventListener('click', () => {
+        if (isTrackerMode) {
+          isTrackerMode = false;
+          btnTracker.classList.remove('active');
+          btnFixedTilt.classList.add('active');
+          calculateSolarSavings();
+        }
+      });
+
+      btnTracker.addEventListener('click', () => {
+        if (!isTrackerMode) {
+          isTrackerMode = true;
+          btnFixedTilt.classList.remove('active');
+          btnTracker.classList.add('active');
+          calculateSolarSavings();
+        }
+      });
+
+      // Run initial calculation
+      calculateSolarSavings();
 
     });
   </script>
