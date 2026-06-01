@@ -947,7 +947,7 @@
   <!-- --- System Components Section --- -->
   <section class="section-padding" id="components">
     <div class="container">
-      <div class="grid grid-2 align-center" style="margin-bottom: 4rem;">
+      <div class="grid grid-2 align-center" style="margin-bottom: 1rem;">
         <div>
           <span class="section-tag">System Components</span>
           <h2 class="section-title" style="margin-bottom: 0;">Robust Tracking Hardware & Embedded Software</h2>
@@ -960,126 +960,193 @@
       </div>
 
       <!-- System Components Flow Animation -->
-      <div class="system-flow-stage" style="margin: 0 auto 4rem auto; max-width: 100%; width: 1200px;">
+      <div class="system-flow-stage" style="margin: 0 auto 1rem auto; max-width: 100%; width: 1200px;">
         <svg viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg" role="img"
-             aria-label="Animated system flow: solar energy feeds the Tracker Controller Unit, then the Network Control Unit, Monitoring, and Power and Drive systems, with data pulsing left to right."
-             style="width: 100%; height: auto; display: block; font-family: 'Rajdhani', sans-serif;">
+          aria-label="Animated system flow: solar energy feeds the Tracker Controller Unit, then the Network Control Unit, Monitoring, and Power and Drive systems, with data pulsing left to right."
+          style="width: 100%; height: auto; display: block; font-family: 'Rajdhani', sans-serif;">
           <defs>
             <filter id="g_flow" x="-150%" y="-150%" width="400%" height="400%">
-              <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
             </filter>
             <filter id="gs_flow" x="-150%" y="-150%" width="400%" height="400%">
-              <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              <feGaussianBlur stdDeviation="5" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
             </filter>
           </defs>
 
           <!-- connecting segments -->
           <g id="seg_flow" fill="none" stroke="#d5dae8" stroke-width="2">
-            <path id="s0_flow" d="M69 80 H116"/>
-            <path id="s1_flow" d="M184 80 H416"/>
-            <path id="s2_flow" d="M484 80 H716"/>
-            <path id="s3_flow" d="M784 80 H1016"/>
+            <path id="s0_flow" d="M69 80 H116" />
+            <path id="s1_flow" d="M184 80 H416" />
+            <path id="s2_flow" d="M484 80 H716" />
+            <path id="s3_flow" d="M784 80 H1016" />
           </g>
           <!-- flowing dashes -->
-          <g fill="none" stroke="#f0980f" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 12" opacity="0.95">
-            <use href="#s0_flow"><animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.2s" repeatCount="indefinite"/></use>
-            <use href="#s1_flow"><animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.4s" repeatCount="indefinite"/></use>
-            <use href="#s2_flow"><animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.6s" repeatCount="indefinite"/></use>
-            <use href="#s3_flow"><animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.3s" repeatCount="indefinite"/></use>
+          <g fill="none" stroke="#f0980f" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 12"
+            opacity="0.95">
+            <use href="#s0_flow">
+              <animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.2s" repeatCount="indefinite" />
+            </use>
+            <use href="#s1_flow">
+              <animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.4s" repeatCount="indefinite" />
+            </use>
+            <use href="#s2_flow">
+              <animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.6s" repeatCount="indefinite" />
+            </use>
+            <use href="#s3_flow">
+              <animate attributeName="stroke-dashoffset" from="0" to="-140" dur="2.3s" repeatCount="indefinite" />
+            </use>
           </g>
           <!-- pulse dots -->
           <g fill="#f0980f" filter="url(#g_flow)">
-            <circle r="3.4"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#s0_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#s1_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#s1_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#s2_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath href="#s2_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.3s" repeatCount="indefinite"><mpath href="#s3_flow"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.3s" begin="1.1s" repeatCount="indefinite"><mpath href="#s3_flow"/></animateMotion></circle>
+            <circle r="3.4">
+              <animateMotion dur="2.2s" repeatCount="indefinite">
+                <mpath href="#s0_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.4s" repeatCount="indefinite">
+                <mpath href="#s1_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite">
+                <mpath href="#s1_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.6s" repeatCount="indefinite">
+                <mpath href="#s2_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite">
+                <mpath href="#s2_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.3s" repeatCount="indefinite">
+                <mpath href="#s3_flow" />
+              </animateMotion>
+            </circle>
+            <circle r="3.4">
+              <animateMotion dur="2.3s" begin="1.1s" repeatCount="indefinite">
+                <mpath href="#s3_flow" />
+              </animateMotion>
+            </circle>
           </g>
           <!-- flow chevrons -->
           <g stroke="#b9c0d4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M296 74 l7 6 l-7 6"/><path d="M596 74 l7 6 l-7 6"/><path d="M896 74 l7 6 l-7 6"/>
+            <path d="M296 74 l7 6 l-7 6" />
+            <path d="M596 74 l7 6 l-7 6" />
+            <path d="M896 74 l7 6 l-7 6" />
           </g>
 
           <!-- SUN (energy source) -->
           <g transform="translate(45 80)">
             <g stroke="#e8920f" stroke-width="2.4" stroke-linecap="round" filter="url(#g_flow)">
-              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="26s" repeatCount="indefinite"/>
-              <line x1="0" y1="-17" x2="0" y2="-23"/><line x1="0" y1="17" x2="0" y2="23"/>
-              <line x1="-17" y1="0" x2="-23" y2="0"/><line x1="17" y1="0" x2="23" y2="0"/>
-              <line x1="-12" y1="-12" x2="-16" y2="-16"/><line x1="12" y1="-12" x2="16" y2="-16"/>
-              <line x1="-12" y1="12" x2="-16" y2="16"/><line x1="12" y1="12" x2="16" y2="16"/>
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="26s"
+                repeatCount="indefinite" />
+              <line x1="0" y1="-17" x2="0" y2="-23" />
+              <line x1="0" y1="17" x2="0" y2="23" />
+              <line x1="-17" y1="0" x2="-23" y2="0" />
+              <line x1="17" y1="0" x2="23" y2="0" />
+              <line x1="-12" y1="-12" x2="-16" y2="-16" />
+              <line x1="12" y1="-12" x2="16" y2="-16" />
+              <line x1="-12" y1="12" x2="-16" y2="16" />
+              <line x1="12" y1="12" x2="16" y2="16" />
             </g>
-            <circle r="12" fill="#ffb700" filter="url(#gs_flow)"/><circle r="12" fill="#f7a81c"/><circle r="7" fill="#ffd166"/>
+            <circle r="12" fill="#ffb700" filter="url(#gs_flow)" />
+            <circle r="12" fill="#f7a81c" />
+            <circle r="7" fill="#ffd166" />
           </g>
 
           <!-- ===== NODES ===== -->
           <!-- 01 Tracker -->
           <g>
-            <circle cx="150" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6"/>
+            <circle cx="150" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6" />
             <circle cx="150" cy="80" r="34" fill="none" stroke="#f0980f" stroke-width="1.5">
-              <animate attributeName="r" values="34;41;34" dur="2.6s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="34;41;34" dur="2.6s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" repeatCount="indefinite" />
             </circle>
             <g transform="translate(150 80)">
-              <line x1="-13" y1="14" x2="13" y2="14" stroke="#232544" stroke-width="1.6"/>
-              <line x1="0" y1="14" x2="0" y2="3" stroke="#232544" stroke-width="1.6"/>
-              <g transform="rotate(-22)"><rect x="-15" y="-7" width="30" height="8" rx="1.5" fill="#232544"/><rect x="-15" y="-7" width="30" height="2.6" fill="#f0980f"/></g>
-              <circle cx="0" cy="3" r="2.3" fill="#f0980f"/>
+              <line x1="-13" y1="14" x2="13" y2="14" stroke="#232544" stroke-width="1.6" />
+              <line x1="0" y1="14" x2="0" y2="3" stroke="#232544" stroke-width="1.6" />
+              <g transform="rotate(-22)">
+                <rect x="-15" y="-7" width="30" height="8" rx="1.5" fill="#232544" />
+                <rect x="-15" y="-7" width="30" height="2.6" fill="#f0980f" />
+              </g>
+              <circle cx="0" cy="3" r="2.3" fill="#f0980f" />
             </g>
-            <text x="150" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#ef9a1e">01</text>
-            <text x="150" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5" fill="#232544">TRACKER</text>
+            <text x="150" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1"
+              fill="#ef9a1e">01</text>
+            <text x="150" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5"
+              fill="#232544">TRACKER</text>
           </g>
 
           <!-- 02 Network -->
           <g>
-            <circle cx="450" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6"/>
+            <circle cx="450" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6" />
             <circle cx="450" cy="80" r="34" fill="none" stroke="#f0980f" stroke-width="1.5">
-              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="0.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="0.5s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="0.5s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="0.5s" repeatCount="indefinite" />
             </circle>
             <g transform="translate(450 80)" stroke="#232544" stroke-width="1.6" fill="none">
-              <rect x="-15" y="-13" width="30" height="10" rx="2"/>
-              <rect x="-15" y="1" width="30" height="10" rx="2"/>
-              <circle cx="-10" cy="-8" r="1.5" fill="#f0980f" stroke="none"/>
-              <circle cx="-10" cy="6" r="1.5" fill="#f0980f" stroke="none"/>
-              <line x1="-3" y1="-8" x2="9" y2="-8"/><line x1="-3" y1="6" x2="9" y2="6"/>
+              <rect x="-15" y="-13" width="30" height="10" rx="2" />
+              <rect x="-15" y="1" width="30" height="10" rx="2" />
+              <circle cx="-10" cy="-8" r="1.5" fill="#f0980f" stroke="none" />
+              <circle cx="-10" cy="6" r="1.5" fill="#f0980f" stroke="none" />
+              <line x1="-3" y1="-8" x2="9" y2="-8" />
+              <line x1="-3" y1="6" x2="9" y2="6" />
             </g>
-            <text x="450" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#ef9a1e">02</text>
-            <text x="450" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5" fill="#232544">NETWORK</text>
+            <text x="450" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1"
+              fill="#ef9a1e">02</text>
+            <text x="450" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5"
+              fill="#232544">NETWORK</text>
           </g>
 
           <!-- 03 Monitoring -->
           <g>
-            <circle cx="750" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6"/>
+            <circle cx="750" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6" />
             <circle cx="750" cy="80" r="34" fill="none" stroke="#f0980f" stroke-width="1.5">
-              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="1.0s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="1.0s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="1.0s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="1.0s" repeatCount="indefinite" />
             </circle>
             <g transform="translate(750 80)" stroke="#232544" stroke-width="1.6" fill="none">
-              <rect x="-16" y="-12" width="32" height="21" rx="2"/>
-              <polyline points="-11,5 -4,-3 3,1 12,-8" stroke="#f0980f" stroke-width="2.2"/>
-              <line x1="0" y1="9" x2="0" y2="13"/><line x1="-7" y1="13" x2="7" y2="13"/>
+              <rect x="-16" y="-12" width="32" height="21" rx="2" />
+              <polyline points="-11,5 -4,-3 3,1 12,-8" stroke="#f0980f" stroke-width="2.2" />
+              <line x1="0" y1="9" x2="0" y2="13" />
+              <line x1="-7" y1="13" x2="7" y2="13" />
             </g>
-            <text x="750" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#ef9a1e">03</text>
-            <text x="750" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5" fill="#232544">MONITORING</text>
+            <text x="750" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1"
+              fill="#ef9a1e">03</text>
+            <text x="750" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5"
+              fill="#232544">MONITORING</text>
           </g>
 
           <!-- 04 Power -->
           <g>
-            <circle cx="1050" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6"/>
+            <circle cx="1050" cy="80" r="34" fill="#ffffff" stroke="#232544" stroke-width="1.6" />
             <circle cx="1050" cy="80" r="34" fill="none" stroke="#f0980f" stroke-width="1.5">
-              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="1.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="34;41;34" dur="2.6s" begin="1.5s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.55;0;0.55" dur="2.6s" begin="1.5s" repeatCount="indefinite" />
             </circle>
             <g transform="translate(1050 80)">
-              <rect x="-16" y="-10" width="27" height="20" rx="2.5" fill="none" stroke="#232544" stroke-width="1.6"/>
-              <rect x="11" y="-4" width="3.5" height="8" rx="1" fill="#232544"/>
-              <path d="M-1 -7 L-8 2 H-2 L-4 9 L6 -2 H0 Z" fill="#f0980f"/>
+              <rect x="-16" y="-10" width="27" height="20" rx="2.5" fill="none" stroke="#232544" stroke-width="1.6" />
+              <rect x="11" y="-4" width="3.5" height="8" rx="1" fill="#232544" />
+              <path d="M-1 -7 L-8 2 H-2 L-4 9 L6 -2 H0 Z" fill="#f0980f" />
             </g>
-            <text x="1050" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#ef9a1e">04</text>
-            <text x="1050" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5" fill="#232544">POWER</text>
+            <text x="1050" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1"
+              fill="#ef9a1e">04</text>
+            <text x="1050" y="142" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="2.5"
+              fill="#232544">POWER</text>
           </g>
 
         </svg>
@@ -1226,121 +1293,7 @@
     </div>
   </section>
 
-  <!-- --- Testimonials Section --- -->
-  <section class="section-padding testimonials-section" id="testimonials">
-    <div class="container">
-      <div class="grid grid-2 align-center" style="margin-bottom: 4rem;">
-        <div>
-          <span class="section-tag">Client Trust</span>
-          <h2 class="section-title" style="margin-bottom: 0;">Trusted by Leading Solar & Energy Partners</h2>
-        </div>
-        <div>
-          <p style="color: var(--text-secondary);">Discover how our precision single-axis solar tracking solutions have
-            optimized operations across Southern African utility sites.</p>
-        </div>
-      </div>
 
-      <div class="grid grid-3">
-        <!-- Card 1 -->
-        <div class="testimonial-card">
-          <div class="rating-stars">
-            <!-- 5 star svg loops -->
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          </div>
-          <p class="testimonial-text">"We deployed TrackLab across our multi-megawatt farm. The LoRa row communication
-            and closed-loop astronomical control work perfectly under Pretoria's challenging weather shifts."</p>
-          <div class="client-profile">
-            <!-- Fallback initials / premium layout -->
-            <div
-              style="width:50px; height:50px; border-radius:50%; background:var(--accent-gradient); color:white; font-family:var(--font-heading); font-weight:800; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">
-              SD</div>
-            <div class="client-info">
-              <h4>Sipho Dlamini</h4>
-              <span>Project Engineer, Solar Farms</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="testimonial-card">
-          <div class="rating-stars">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          </div>
-          <p class="testimonial-text">"The local support and ability to customize the software configuration for our
-            site-specific high-wind stowing requirements made TrackLab the perfect choice for our mining grid."</p>
-          <div class="client-profile">
-            <div
-              style="width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%); color:white; font-family:var(--font-heading); font-weight:800; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">
-              JW</div>
-            <div class="client-info">
-              <h4>Johan de Wet</h4>
-              <span>Solar Operations Manager</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="testimonial-card">
-          <div class="rating-stars">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          </div>
-          <p class="testimonial-text">"TrackLab's embedded controllers and battery backup are exceptionally robust.
-            Daily self-consumption is practically negligible, maximizing our overall farm yield."</p>
-          <div class="client-profile">
-            <div
-              style="width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); color:white; font-family:var(--font-heading); font-weight:800; font-size:1.1rem; display:flex; align-items:center; justify-content:center;">
-              NM</div>
-            <div class="client-info">
-              <h4>Naledi Mokoena</h4>
-              <span>Lead Grid Integrator</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- --- FAQ Section --- -->
   <section class="section-padding" id="faq">
