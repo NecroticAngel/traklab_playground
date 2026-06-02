@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackLab — TCU System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber:#ffb700; --amber-soft:#ffd166; --ink:#eef0f8; --muted:#9a9db5;
+    --card:#1b1d33; --cardline:rgba(255,255,255,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:transparent;}
+  body{display:flex;align-items:center;justify-content:center;
+    font-family:"Rajdhani",system-ui,sans-serif;color:var(--ink);}
+  .net{position:relative;width:1080px;max-width:100%;aspect-ratio:1080/680;
+    background:radial-gradient(120% 120% at 50% 40%,#15172b 0%,#0d0e1a 100%);
+    border-radius:18px;overflow:hidden;}
+  .net svg.spokes{position:absolute;inset:0;width:100%;height:100%;}
+
+  .node{position:absolute;transform:translate(-50%,-50%);width:208px;padding:16px 14px;
+    background:var(--card);border:1px solid var(--cardline);border-radius:12px;text-align:center;
+    transition:transform .18s,border-color .18s,box-shadow .18s;z-index:2;}
+  .node:hover{transform:translate(-50%,-50%) translateY(-3px);border-color:var(--amber);
+    box-shadow:0 10px 28px rgba(0,0,0,.4);}
+  .node .ic{height:30px;margin-bottom:9px;display:flex;align-items:center;justify-content:center;}
+  .node .ic svg{stroke:var(--amber);}
+  .node .t{font-family:"Rajdhani",system-ui,sans-serif;font-weight:700;font-size:18px;letter-spacing:.5px;}
+  .node .s{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:.8px;margin-top:2px;}
+
+  .hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:224px;padding:22px 16px;
+    background:#20223f;border:2px solid var(--amber);border-radius:14px;text-align:center;z-index:3;
+    box-shadow:0 0 30px rgba(255,183,0,.28);}
+  .hub::after{content:"";position:absolute;inset:-2px;border-radius:14px;border:2px solid var(--amber);
+    animation:ring 2.6s ease-out infinite;z-index:-1;}
+  @keyframes ring{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+  .hub .ic svg{stroke:var(--amber);}
+  .hub .t{font-family:"Rajdhani",system-ui,sans-serif;font-weight:700;font-size:30px;letter-spacing:2px;margin-top:6px;}
+  .hub .s{font-size:14px;font-weight:500;color:var(--amber-soft);letter-spacing:.8px;margin-top:2px;}
+
+  @media(max-width:720px){.node{width:150px;padding:12px 8px} .node .t{font-size:15px} .hub{width:170px} .hub .t{font-size:24px}}
+</style>
+</head>
+<body>
+  <div class="net">
+    <svg class="spokes" viewBox="0 0 1080 680" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#3a3d5e" stroke-width="1.6">
+        <path id="pTL" d="M540 340 L300 150"/>
+        <path id="pTR" d="M540 340 L780 150"/>
+        <path id="pML" d="M540 340 L235 340"/>
+        <path id="pMR" d="M540 340 L845 340"/>
+        <path id="pBL" d="M540 340 L300 530"/>
+        <path id="pBR" d="M540 340 L780 530"/>
+      </g>
+      <g fill="none" stroke="#ffb700" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 14" opacity="0.8">
+        <use href="#pTL"><animate attributeName="stroke-dashoffset" from="0" to="160" dur="2.6s" repeatCount="indefinite"/></use>
+        <use href="#pTR"><animate attributeName="stroke-dashoffset" from="0" to="-160" dur="2.4s" repeatCount="indefinite"/></use>
+        <use href="#pML"><animate attributeName="stroke-dashoffset" from="0" to="160" dur="2.2s" repeatCount="indefinite"/></use>
+        <use href="#pMR"><animate attributeName="stroke-dashoffset" from="0" to="160" dur="2.8s" repeatCount="indefinite"/></use>
+        <use href="#pBL"><animate attributeName="stroke-dashoffset" from="0" to="-160" dur="2.5s" repeatCount="indefinite"/></use>
+        <use href="#pBR"><animate attributeName="stroke-dashoffset" from="0" to="160" dur="2.3s" repeatCount="indefinite"/></use>
+      </g>
+      <g fill="#ffd166">
+        <circle r="3.6"><animateMotion dur="2.6s" calcMode="linear" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pTL"/></animateMotion></circle>
+        <circle r="3.6"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#pTR"/></animateMotion></circle>
+        <circle r="3.6"><animateMotion dur="2.2s" calcMode="linear" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pML"/></animateMotion></circle>
+        <circle r="3.6"><animateMotion dur="2.8s" calcMode="linear" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pMR"/></animateMotion></circle>
+        <circle r="3.6"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#pBL"/></animateMotion></circle>
+        <circle r="3.6"><animateMotion dur="2.3s" calcMode="linear" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#pBR"/></animateMotion></circle>
+      </g>
+    </svg>
+
+    <!-- HUB -->
+    <div class="hub">
+      <div class="ic">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4"/>
+          <path d="M9 7V4M15 7V4M9 20v-3M15 20v-3M7 9H4M7 15H4M20 9h-3M20 15h-3"/>
+        </svg>
+      </div>
+      <div class="t">TCU</div>
+      <div class="s">Tracker Controller Unit</div>
+    </div>
+
+    <!-- NODES -->
+    <div class="node" style="left:27.8%;top:22%">
+      <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+      <div class="t">Solar Position</div><div class="s">Algorithm</div>
+    </div>
+
+    <div class="node" style="left:72.2%;top:22%">
+      <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18"/></svg></div>
+      <div class="t">Motor Drive</div><div class="s">Angle Control</div>
+    </div>
+
+    <div class="node" style="left:21.8%;top:50%">
+      <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17h16"/><path d="M6 17 16 7"/><circle cx="6" cy="17" r="1.4" fill="#ffb700" stroke="none"/><path d="M11 17a5 5 0 0 1 1.5-3.5"/></svg></div>
+      <div class="t">Tilt Sensor</div><div class="s">Angle Measurement</div>
+    </div>
+
+    <div class="node" style="left:78.2%;top:50%">
+      <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="9" rx="2"/><path d="M21 11v3"/><path d="M7 12.5h5" stroke="#ffb700"/></svg></div>
+      <div class="t">Battery Backup</div><div class="s">Solar Powered</div>
+    </div>
+
+    <div class="node" style="left:27.8%;top:78%">
+      <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.2-2.9 7.4-7 8.5C7.9 18.4 5 15.2 5 11V6z"/><path d="M9 11.5l2 2 4-4" stroke="#ffb700"/></svg></div>
+      <div class="t">Safety Stow</div><div class="s">Wind / Hail / Snow</div>
+    </div>
+
+    <div class="node" style="left:72.2%;top:78%">
+      <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19v-7"/><circle cx="12" cy="11" r="1.4" fill="#ffb700" stroke="none"/><path d="M8.5 8a5 5 0 0 1 7 0M6 5.5a8.5 8.5 0 0 1 12 0"/></svg></div>
+      <div class="t">Communication</div><div class="s">LoRa / RS485 / CAN / Fibre</div>
+    </div>
+
+  </div>
+</body>
+</html>
